@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Add any necessary configurations here.
   output: "export",
+  basePath: "",
+  assetPrefix: "",
 };
 
 export default nextConfig;
