@@ -1,5 +1,6 @@
 import "./styles/globals.css";
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Options Tools",
