@@ -77,19 +77,17 @@ const HomePage = () => {
             >
               Breakeven Calculator
             </button>
+            <button
+              onClick={() => setActiveTool('sharpe-ratio')}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                activeTool === 'sharpe-ratio'
+                  ? 'bg-teal-500 text-white shadow-lg'
+                  : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
+              }`}
+            >
+              Sharpe Ratio Calculator
+            </button>
           </nav>
-        </div>
-        <div>
-          <button
-            onClick={() => setActiveTool('sharpe-ratio')}
-            className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-              activeTool === 'sharpe-ratio'
-                ? 'bg-teal-500 text-white shadow-lg'
-                : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
-            }`}
-          >
-            Sharpe Ratio Calculator
-          </button>
         </div>
 
         {/* Render the selected tool */}
@@ -114,4 +112,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
