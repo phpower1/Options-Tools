@@ -4,9 +4,10 @@ import { useState } from 'react';
 import ROICalculator from './ROICalculator';
 import BreakevenCalculator from './BreakevenCalculator';
 import SharpeRatioCalculator from './SharpeRatioCalculator';
+import SortinoRatioCalculator from './SortinoRatioCalculator';
 
 // Define a type for the available tools
-type Tool = 'roi-calculator' | 'breakeven-calculator' | 'sharpe-ratio' | 'implied-volatility';
+type Tool = 'roi-calculator' | 'breakeven-calculator' | 'sharpe-ratio' | 'sortino-ratio' | 'implied-volatility';
 
 const HomePage = () => {
   // State to track which tool is currently selected
@@ -21,6 +22,8 @@ const HomePage = () => {
         return <BreakevenCalculator />;
       case 'sharpe-ratio':
         return <SharpeRatioCalculator />;
+      case 'sortino-ratio':
+        return <SortinoRatioCalculator />;
       default:
         return null;
     }
@@ -86,6 +89,16 @@ const HomePage = () => {
               }`}
             >
               Sharpe Ratio Calculator
+            </button>
+            <button
+              onClick={() => setActiveTool('sortino-ratio')}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                activeTool === 'sortino-ratio'
+                  ? 'bg-teal-500 text-white shadow-lg'
+                  : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
+              }`}
+            >
+              Sortino Ratio Calculator
             </button>
           </nav>
         </div>
