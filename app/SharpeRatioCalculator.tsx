@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SharpeRatioCalculator = () => {
   const [investmentReturn, setInvestmentReturn] = useState('');
@@ -8,6 +8,7 @@ const SharpeRatioCalculator = () => {
   const [standardDeviation, setStandardDeviation] = useState('');
   const [sharpeRatio, setSharpeRatio] = useState<number | null>(null);
 
+  // Function to calculate Sharpe Ratio
   const calculateSharpeRatio = () => {
     const rp = parseFloat(investmentReturn);
     const rf = parseFloat(riskFreeRate);
@@ -21,6 +22,32 @@ const SharpeRatioCalculator = () => {
     const calculatedSharpe = (rp - rf) / sigmaP;
     setSharpeRatio(calculatedSharpe);
   };
+
+  // Effect to load data from local storage on component mount
+  useEffect(() => {
+    try {
+      const storedState = localStorage.getItem('sharpeRatioCalculatorState');
+      if (storedState) {
+        const { investmentReturn, riskFreeRate, standardDeviation } = JSON.parse(storedState);
+        setInvestmentReturn(investmentReturn);
+        setRiskFreeRate(riskFreeRate);
+        setStandardDeviation(standardDeviation);
+      }
+    } catch (error) {
+      console.error("Failed to load state from local storage:", error);
+    }
+  }, []);
+
+  // Effect to save data to local storage and recalculate whenever inputs change
+  useEffect(() => {
+    try {
+      const stateToSave = { investmentReturn, riskFreeRate, standardDeviation };
+      localStorage.setItem('sharpeRatioCalculatorState', JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error("Failed to save state to local storage:", error);
+    }
+    calculateSharpeRatio();
+  }, [investmentReturn, riskFreeRate, standardDeviation]);
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
@@ -43,7 +70,6 @@ const SharpeRatioCalculator = () => {
               id="investment-return"
               value={investmentReturn}
               onChange={(e) => setInvestmentReturn(e.target.value)}
-              onBlur={calculateSharpeRatio}
               placeholder="e.g., 12"
               className="mt-1 block w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 transition-colors"
             />
@@ -57,7 +83,6 @@ const SharpeRatioCalculator = () => {
               id="risk-free-rate"
               value={riskFreeRate}
               onChange={(e) => setRiskFreeRate(e.target.value)}
-              onBlur={calculateSharpeRatio}
               placeholder="e.g., 2.5"
               className="mt-1 block w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 transition-colors"
             />
@@ -71,7 +96,6 @@ const SharpeRatioCalculator = () => {
               id="standard-deviation"
               value={standardDeviation}
               onChange={(e) => setStandardDeviation(e.target.value)}
-              onBlur={calculateSharpeRatio}
               placeholder="e.g., 15"
               className="mt-1 block w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 transition-colors"
             />

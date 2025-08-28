@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const BreakevenCalculator = () => {
   const [strategy, setStrategy] = useState('call');
@@ -8,6 +8,7 @@ const BreakevenCalculator = () => {
   const [premium, setPremium] = useState('');
   const [breakevenPrice, setBreakevenPrice] = useState<number | null>(null);
 
+  // Function to calculate breakeven price
   const calculateBreakeven = () => {
     const strike = parseFloat(strikePrice);
     const premiumValue = parseFloat(premium);
@@ -19,14 +20,38 @@ const BreakevenCalculator = () => {
 
     let calculatedPrice;
     if (strategy === 'call') {
-      // For a call option, breakeven is strike price + premium
       calculatedPrice = strike + premiumValue;
     } else {
-      // For a put option, breakeven is strike price - premium
       calculatedPrice = strike - premiumValue;
     }
     setBreakevenPrice(calculatedPrice);
   };
+
+  // Effect to load data from local storage on component mount
+  useEffect(() => {
+    try {
+      const storedState = localStorage.getItem('breakevenCalculatorState');
+      if (storedState) {
+        const { strategy, strikePrice, premium } = JSON.parse(storedState);
+        setStrategy(strategy);
+        setStrikePrice(strikePrice);
+        setPremium(premium);
+      }
+    } catch (error) {
+      console.error("Failed to load state from local storage:", error);
+    }
+  }, []);
+
+  // Effect to save data to local storage and recalculate whenever inputs change
+  useEffect(() => {
+    try {
+      const stateToSave = { strategy, strikePrice, premium };
+      localStorage.setItem('breakevenCalculatorState', JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error("Failed to save state to local storage:", error);
+    }
+    calculateBreakeven();
+  }, [strategy, strikePrice, premium]);
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
@@ -41,7 +66,7 @@ const BreakevenCalculator = () => {
         {/* Strategy Selection */}
         <div className="flex justify-center gap-4 mb-4">
           <button
-            onClick={() => { setStrategy('call'); setBreakevenPrice(null); }}
+            onClick={() => setStrategy('call')}
             className={`px-5 py-2 rounded-full font-semibold transition-all duration-300 ${
               strategy === 'call'
                 ? 'bg-teal-500 text-white shadow-lg'
@@ -51,7 +76,7 @@ const BreakevenCalculator = () => {
             Call Option
           </button>
           <button
-            onClick={() => { setStrategy('put'); setBreakevenPrice(null); }}
+            onClick={() => setStrategy('put')}
             className={`px-5 py-2 rounded-full font-semibold transition-all duration-300 ${
               strategy === 'put'
                 ? 'bg-teal-500 text-white shadow-lg'
@@ -73,7 +98,6 @@ const BreakevenCalculator = () => {
               id="strike-price"
               value={strikePrice}
               onChange={(e) => setStrikePrice(e.target.value)}
-              onBlur={calculateBreakeven}
               placeholder="e.g., 500"
               className="mt-1 block w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 transition-colors"
             />
@@ -87,7 +111,6 @@ const BreakevenCalculator = () => {
               id="premium-paid"
               value={premium}
               onChange={(e) => setPremium(e.target.value)}
-              onBlur={calculateBreakeven}
               placeholder="e.g., 5.50"
               className="mt-1 block w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 transition-colors"
             />
