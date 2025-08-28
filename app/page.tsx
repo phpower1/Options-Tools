@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import ROICalculator from './ROICalculator.tsx';
-import BreakevenCalculator from './BreakevenCalculator.tsx';
+import ROICalculator from './ROICalculator';
+import BreakevenCalculator from './BreakevenCalculator';
 
 // Define a type for the available tools
 type Tool = 'roi-calculator' | 'breakeven-calculator' | 'implied-volatility';
@@ -99,3 +99,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

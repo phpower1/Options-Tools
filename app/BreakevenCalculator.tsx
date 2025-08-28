@@ -47,8 +47,8 @@ const BreakevenCalculator = () => {
         <p>
           This calculator works based on a simple formula. For **call options**, the breakeven price is the strike price plus the premium paid. For **put options**, the breakeven price is the strike price minus the premium paid. By calculating these values, you can instantly see the price target for your trade.
         </p>
-        <h3 class="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
-        <ol class="list-decimal list-inside space-y-2">
+        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
+        <ol className="list-decimal list-inside space-y-2">
           <li>Select your **Options Strategy**: Choose between a **Call** or a **Put** option.</li>
           <li>Enter the **Strike Price ($)**: This is the price at which the option can be exercised.</li>
           <li>Enter the **Premium Paid ($)**: The total cost of the options contract.</li>
