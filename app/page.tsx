@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import ROICalculator from './ROICalculator';
 import BreakevenCalculator from './BreakevenCalculator';
+import SharpeRatioCalculator from './SharpeRatioCalculator';
 
 // Define a type for the available tools
-type Tool = 'roi-calculator' | 'breakeven-calculator' | 'implied-volatility';
+type Tool = 'roi-calculator' | 'breakeven-calculator' | 'sharpe-ratio' | 'implied-volatility';
 
 const HomePage = () => {
   // State to track which tool is currently selected
@@ -18,6 +19,8 @@ const HomePage = () => {
         return <ROICalculator />;
       case 'breakeven-calculator':
         return <BreakevenCalculator />;
+      case 'sharpe-ratio':
+        return <SharpeRatioCalculator />;
       default:
         return null;
     }
@@ -76,6 +79,18 @@ const HomePage = () => {
             </button>
           </nav>
         </div>
+        <div>
+          <button
+            onClick={() => setActiveTool('sharpe-ratio')}
+            className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              activeTool === 'sharpe-ratio'
+                ? 'bg-teal-500 text-white shadow-lg'
+                : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
+            }`}
+          >
+            Sharpe Ratio Calculator
+          </button>
+        </div>
 
         {/* Render the selected tool */}
         <main className="flex-1 w-full max-w-4xl flex flex-col items-center">
@@ -99,3 +114,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
