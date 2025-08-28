@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import ROICalculator from './ROICalculator';
+import ROICalculator from './ROICalculator.tsx';
+import BreakevenCalculator from './BreakevenCalculator.tsx';
 
 // Define a type for the available tools
 type Tool = 'roi-calculator' | 'breakeven-calculator' | 'implied-volatility';
@@ -16,13 +17,7 @@ const HomePage = () => {
       case 'roi-calculator':
         return <ROICalculator />;
       case 'breakeven-calculator':
-        // Placeholder for a future tool component
-        return (
-          <div className="bg-gray-800 text-gray-100 p-8 rounded-xl w-full max-w-4xl text-center">
-            <h2 className="text-2xl font-bold mb-4">Breakeven Calculator</h2>
-            <p className="text-gray-400">Coming soon! This is where your breakeven calculator will go.</p>
-          </div>
-        );
+        return <BreakevenCalculator />;
       default:
         return null;
     }
