@@ -37,25 +37,6 @@ const BreakevenCalculator = () => {
         Calculate the breakeven price for your call or put options.
       </p>
 
-      {/* SEO-friendly descriptive content */}
-      <div className="text-gray-400 text-sm mb-8 space-y-4">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is a Breakeven Calculator?</h2>
-        <p>
-          A **breakeven calculator** is a critical tool for options traders to determine the price at which a stock must trade for an options position to be neither profitable nor at a loss. Knowing your **breakeven point** is essential for risk management and for setting realistic price targets for your trades. This tool simplifies a key part of **options analysis**, helping you make more informed trading decisions.
-        </p>
-        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
-        <p>
-          This calculator works based on a simple formula. For **call options**, the breakeven price is the strike price plus the premium paid. For **put options**, the breakeven price is the strike price minus the premium paid. By calculating these values, you can instantly see the price target for your trade.
-        </p>
-        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
-        <ol className="list-decimal list-inside space-y-2">
-          <li>Select your **Options Strategy**: Choose between a **Call** or a **Put** option.</li>
-          <li>Enter the **Strike Price ($)**: This is the price at which the option can be exercised.</li>
-          <li>Enter the **Premium Paid ($)**: The total cost of the options contract.</li>
-          <li>The **Breakeven Price** will be calculated and displayed automatically.</li>
-        </ol>
-      </div>
-
       <div className="space-y-6">
         {/* Strategy Selection */}
         <div className="flex justify-center gap-4 mb-4">
@@ -123,6 +104,25 @@ const BreakevenCalculator = () => {
           </div>
         </div>
       )}
+
+      {/* SEO-friendly descriptive content */}
+      <div className="text-gray-400 text-sm mt-8 space-y-4">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is a Breakeven Calculator?</h2>
+        <p>
+          A **breakeven calculator** is a critical tool for options traders to determine the price at which a stock must trade for an options position to be neither profitable nor at a loss. Knowing your **breakeven point** is essential for risk management and for setting realistic price targets for your trades. This tool simplifies a key part of **options analysis**, helping you make more informed trading decisions.
+        </p>
+        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
+        <p>
+          This calculator works based on a simple formula. For **call options**, the breakeven price is the strike price plus the premium paid. For **put options**, the breakeven price is the strike price minus the premium paid. By calculating these values, you can instantly see the price target for your trade.
+        </p>
+        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
+        <ol className="list-decimal list-inside space-y-2">
+          <li>Select your **Options Strategy**: Choose between a **Call** or a **Put** option.</li>
+          <li>Enter the **Strike Price ($)**: This is the price at which the option can be exercised.</li>
+          <li>Enter the **Premium Paid ($)**: The total cost of the options contract.</li>
+          <li>The **Breakeven Price** will be calculated and displayed automatically.</li>
+        </ol>
+      </div>
     </div>
   );
 };
