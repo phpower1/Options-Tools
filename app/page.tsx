@@ -31,6 +31,39 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 font-sans flex flex-col items-center relative overflow-hidden">
+      {/* JSON-LD for the main page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Options Tools",
+          "description": "A collection of financial calculators for options traders, including ROI, Breakeven, Sharpe Ratio, and Sortino Ratio.",
+          "url": "https://www.tradetoolshub.com",
+          "hasPart": [
+            {
+              "@type": "SiteNavigationElement",
+              "name": "ROI Calculator",
+              "url": "https://www.tradetoolshub.com/#roi-calculator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "name": "Breakeven Calculator",
+              "url": "https://www.tradetoolshub.com/#breakeven-calculator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "name": "Sharpe Ratio Calculator",
+              "url": "https://www.tradetoolshub.com/#sharpe-ratio"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "name": "Sortino Ratio Calculator",
+              "url": "https://www.tradetoolshub.com/#sortino-ratio"
+            }
+          ]
+        })
+      }} />
+
       {/* Background animation element */}
       <style jsx>{`
         @keyframes gradient-move {

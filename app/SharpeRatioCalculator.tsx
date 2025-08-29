@@ -63,6 +63,34 @@ const SharpeRatioCalculator = () => {
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
+      {/* JSON-LD for the Sharpe Ratio Calculator */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Sharpe Ratio Calculator",
+          "description": "A financial calculator for investors and options traders to determine the risk-adjusted return of an investment using the Sharpe Ratio.",
+          "mainEntity": {
+            "@type": "HowTo",
+            "name": "Calculate Sharpe Ratio",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "text": "Enter the investment return percentage."
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Enter the risk-free rate percentage."
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Enter the standard deviation percentage of the investment."
+              }
+            ]
+          }
+        })
+      }} />
+
       <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
         Sharpe Ratio Calculator
       </h1>

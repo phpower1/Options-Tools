@@ -63,6 +63,34 @@ const SortinoRatioCalculator = () => {
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
+      {/* JSON-LD for the Sortino Ratio Calculator */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Sortino Ratio Calculator",
+          "description": "A financial calculator for investors and options traders to determine the risk-adjusted return of an investment, focusing on downside volatility.",
+          "mainEntity": {
+            "@type": "HowTo",
+            "name": "Calculate Sortino Ratio",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "text": "Enter the investment return percentage."
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Enter the risk-free rate percentage."
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Enter the downside deviation percentage of the investment."
+              }
+            ]
+          }
+        })
+      }} />
+
       <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
         Sortino Ratio Calculator
       </h1>
@@ -164,7 +192,7 @@ const SortinoRatioCalculator = () => {
           <ul>
             <li>$R_p$ is the **Return of the Investment** or portfolio.</li>
             <li>$R_f$ is the **Risk-Free Rate of Return**, typically the return on a low-risk investment like a government bond.</li>
-            <li>$\sigma_d$ is the **Downside Deviation**, which measures the volatility of returns below the risk-free rate.</li>
+            <li>$\sigma_d$ is the **Downside Deviation**, which measures the volatility of returns that fall below the risk-free rate.</li>
           </ul>
         </p>
         <p>

@@ -55,6 +55,34 @@ const BreakevenCalculator = () => {
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
+      {/* JSON-LD for the Breakeven Calculator */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Breakeven Calculator",
+          "description": "A financial calculator for options traders to determine the breakeven point for call and put options.",
+          "mainEntity": {
+            "@type": "HowTo",
+            "name": "Calculate Options Breakeven",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "text": "Select either a Call or Put option strategy."
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Enter the strike price of the option."
+              },
+              {
+                "@type": "HowToStep",
+                "text": "Enter the premium paid for the option."
+              }
+            ]
+          }
+        })
+      }} />
+
       <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
         Breakeven Calculator
       </h1>

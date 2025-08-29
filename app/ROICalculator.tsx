@@ -110,6 +110,26 @@ const ROICalculator = () => {
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
+      {/* JSON-LD for the ROI Calculator */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "ROI Calculator",
+          "description": "A financial calculator for options traders to calculate Return on Investment (ROI), annualized ROI, and premium per day.",
+          "mainEntity": {
+            "@type": "Calculator",
+            "name": "ROI Calculator",
+            "description": "Calculates ROI for options trades.",
+            "url": "https://www.tradetoolshub.com/#roi-calculator",
+            "potentialAction": {
+              "@type": "PerformAction",
+              "name": "Calculate ROI"
+            }
+          }
+        })
+      }} />
+
       <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
         ROI Calculator
       </h1>
