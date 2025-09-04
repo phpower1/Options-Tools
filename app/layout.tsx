@@ -6,6 +6,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Options Tools",
   description: "A collection of tools to help you make informed decisions about options trading.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -15,9 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}
-        <Analytics/>
-        <SpeedInsights/>
+      <body>
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
