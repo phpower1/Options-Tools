@@ -6,6 +6,7 @@ import BreakevenCalculator from './BreakevenCalculator.tsx';
 import SharpeRatioCalculator from './SharpeRatioCalculator.tsx';
 import SortinoRatioCalculator from './SortinoRatioCalculator.tsx';
 import GreeksCalculator from './GreeksCalculator.tsx';
+import ImpliedVolatilityCalculator from './ImpliedVolatilityCalculator.tsx';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -31,7 +32,8 @@ const jsonLd = {
         "https://www.tradetoolshub.com/?tool=breakeven-calculator",
         "https://www.tradetoolshub.com/?tool=sharpe-ratio-calculator",
         "https://www.tradetoolshub.com/?tool=sortino-ratio-calculator",
-        "https://www.tradetoolshub.com/?tool=greeks-calculator"
+        "https://www.tradetoolshub.com/?tool=greeks-calculator",
+        "https://www.tradetoolshub.com/?tool=iv-calculator"
       ]
     }
   }
@@ -49,6 +51,8 @@ const renderTool = (tool: string) => {
       return <SortinoRatioCalculator />;
     case 'greeks':
       return <GreeksCalculator />;
+    case 'iv':
+      return <ImpliedVolatilityCalculator />;
     default:
       return null;
   }
@@ -124,6 +128,16 @@ export default function HomePage() {
             }`}
           >
             Greeks
+          </button>
+          <button
+            onClick={() => setActiveTool("iv")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "iv"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            IV Calculator
           </button>
         </nav>
 
