@@ -7,6 +7,7 @@ import SharpeRatioCalculator from './SharpeRatioCalculator.tsx';
 import SortinoRatioCalculator from './SortinoRatioCalculator.tsx';
 import GreeksCalculator from './GreeksCalculator.tsx';
 import ImpliedVolatilityCalculator from './ImpliedVolatilityCalculator.tsx';
+import MaxPainCalculator from './MaxPainCalculator.tsx';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -33,7 +34,8 @@ const jsonLd = {
         "https://www.tradetoolshub.com/?tool=sharpe-ratio-calculator",
         "https://www.tradetoolshub.com/?tool=sortino-ratio-calculator",
         "https://www.tradetoolshub.com/?tool=greeks-calculator",
-        "https://www.tradetoolshub.com/?tool=iv-calculator"
+        "https://www.tradetoolshub.com/?tool=iv-calculator",
+        "https://www.tradetoolshub.com/?tool=max-pain-calculator"
       ]
     }
   }
@@ -53,6 +55,8 @@ const renderTool = (tool: string) => {
       return <GreeksCalculator />;
     case 'iv':
       return <ImpliedVolatilityCalculator />;
+    case 'max-pain':
+      return <MaxPainCalculator />;
     default:
       return null;
   }
@@ -138,6 +142,16 @@ export default function HomePage() {
             }`}
           >
             IV Calculator
+          </button>
+          <button
+            onClick={() => setActiveTool("max-pain")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "max-pain"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            Max Pain
           </button>
         </nav>
 
