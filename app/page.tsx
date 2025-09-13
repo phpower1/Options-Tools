@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import ROICalculator from './ROICalculator.tsx';
-import BreakevenCalculator from './BreakevenCalculator.tsx';
-import SharpeRatioCalculator from './SharpeRatioCalculator.tsx';
-import SortinoRatioCalculator from './SortinoRatioCalculator.tsx';
-import GreeksCalculator from './GreeksCalculator.tsx';
-import ImpliedVolatilityCalculator from './ImpliedVolatilityCalculator.tsx';
-import MaxPainCalculator from './MaxPainCalculator.tsx';
+import ROICalculator from './ROICalculator';
+import BreakevenCalculator from './BreakevenCalculator';
+import SharpeRatioCalculator from './SharpeRatioCalculator';
+import SortinoRatioCalculator from './SortinoRatioCalculator';
+import GreeksCalculator from './GreeksCalculator';
+import ImpliedVolatilityCalculator from './ImpliedVolatilityCalculator';
+import MaxPainCalculator from './MaxPainCalculator';
 
 const jsonLd = {
   "@context": "https://schema.org",
