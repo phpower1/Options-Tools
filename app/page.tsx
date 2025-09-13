@@ -1,160 +1,151 @@
 "use client";
 
-import { useState } from 'react';
-import ROICalculator from './ROICalculator';
-import BreakevenCalculator from './BreakevenCalculator';
-import SharpeRatioCalculator from './SharpeRatioCalculator';
-import SortinoRatioCalculator from './SortinoRatioCalculator';
+import { useState } from "react";
+import ROICalculator from './ROICalculator.tsx';
+import BreakevenCalculator from './BreakevenCalculator.tsx';
+import SharpeRatioCalculator from './SharpeRatioCalculator.tsx';
+import SortinoRatioCalculator from './SortinoRatioCalculator.tsx';
+import GreeksCalculator from './GreeksCalculator.tsx';
 
-// Define a type for the available tools
-type Tool = 'roi-calculator' | 'breakeven-calculator' | 'sharpe-ratio' | 'sortino-ratio' | 'implied-volatility';
-
-const HomePage = () => {
-  // State to track which tool is currently selected
-  const [activeTool, setActiveTool] = useState<Tool>('roi-calculator');
-
-  // Function to render the active tool component
-  const renderTool = () => {
-    switch (activeTool) {
-      case 'roi-calculator':
-        return <ROICalculator />;
-      case 'breakeven-calculator':
-        return <BreakevenCalculator />;
-      case 'sharpe-ratio':
-        return <SharpeRatioCalculator />;
-      case 'sortino-ratio':
-        return <SortinoRatioCalculator />;
-      default:
-        return null;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TradeToolsHub.com | Options Trading Tools",
+  "description": "A comprehensive hub of financial calculators and tools to help you make informed decisions about options trading.",
+  "url": "https://www.tradetoolshub.com/",
+  "keywords": "options tools, options calculator, options trading, options strategy, ROI, breakeven, sharpe ratio, sortino ratio, stock trading, finance tools",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.tradetoolshub.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "mainContentOfPage": {
+    "@type": "WebPageElement",
+    "name": "Options Tools Navigation",
+    "description": "Navigate between various options trading calculators like ROI, Breakeven, Sharpe Ratio, and Sortino Ratio.",
+    "potentialAction": {
+      "@type": "SiteNavigationElement",
+      "name": "Navigation Links",
+      "url": [
+        "https://www.tradetoolshub.com/?tool=roi-calculator",
+        "https://www.tradetoolshub.com/?tool=breakeven-calculator",
+        "https://www.tradetoolshub.com/?tool=sharpe-ratio-calculator",
+        "https://www.tradetoolshub.com/?tool=sortino-ratio-calculator",
+        "https://www.tradetoolshub.com/?tool=greeks-calculator"
+      ]
     }
-  };
+  }
+};
+
+const renderTool = (tool: string) => {
+  switch (tool) {
+    case 'roi':
+      return <ROICalculator />;
+    case 'breakeven':
+      return <BreakevenCalculator />;
+    case 'sharpe':
+      return <SharpeRatioCalculator />;
+    case 'sortino':
+      return <SortinoRatioCalculator />;
+    case 'greeks':
+      return <GreeksCalculator />;
+    default:
+      return null;
+  }
+};
+
+export default function HomePage() {
+  const [activeTool, setActiveTool] = useState("roi");
+  const currentYear = new Date().getFullYear();
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-4 font-sans flex flex-col items-center relative overflow-hidden">
-      {/* JSON-LD for the main page */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Options Tools",
-          "description": "A collection of financial calculators for options traders, including ROI, Breakeven, Sharpe Ratio, and Sortino Ratio.",
-          "url": "https://www.tradetoolshub.com",
-          "hasPart": [
-            {
-              "@type": "SiteNavigationElement",
-              "name": "ROI Calculator",
-              "url": "https://www.tradetoolshub.com/#roi-calculator"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "name": "Breakeven Calculator",
-              "url": "https://www.tradetoolshub.com/#breakeven-calculator"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "name": "Sharpe Ratio Calculator",
-              "url": "https://www.tradetoolshub.com/#sharpe-ratio"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "name": "Sortino Ratio Calculator",
-              "url": "https://www.tradetoolshub.com/#sortino-ratio"
-            }
-          ]
-        })
-      }} />
-
-      {/* Background animation element */}
-      <style jsx>{`
-        @keyframes gradient-move {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}</style>
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="w-full h-full bg-gradient-to-r from-blue-900 via-teal-900 to-purple-900 bg-[length:400%_400%] animate-[gradient-move_20s_ease_infinite]"></div>
-      </div>
-
-      <div className="relative z-10 w-full flex flex-col items-center">
-        <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700 mb-8">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-center text-teal-400 mb-4">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
+        <header className="w-full max-w-4xl text-center py-8">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-200">
             Options Tools
           </h1>
-          <p className="text-center text-gray-400 mb-8">
+          <p className="text-lg md:text-xl font-medium text-gray-400 mt-2">
             Select a tool to get started.
           </p>
-          
-          {/* Navigation for tools */}
-          <nav className="flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => setActiveTool('roi-calculator')}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTool === 'roi-calculator'
-                  ? 'bg-teal-500 text-white shadow-lg'
-                  : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
-              }`}
-            >
-              ROI Calculator
-            </button>
-            <button
-              onClick={() => setActiveTool('breakeven-calculator')}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTool === 'breakeven-calculator'
-                  ? 'bg-teal-500 text-white shadow-lg'
-                  : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
-              }`}
-            >
-              Breakeven Calculator
-            </button>
-            <button
-              onClick={() => setActiveTool('sharpe-ratio')}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTool === 'sharpe-ratio'
-                  ? 'bg-teal-500 text-white shadow-lg'
-                  : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
-              }`}
-            >
-              Sharpe Ratio Calculator
-            </button>
-            <button
-              onClick={() => setActiveTool('sortino-ratio')}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeTool === 'sortino-ratio'
-                  ? 'bg-teal-500 text-white shadow-lg'
-                  : 'bg-gray-700 text-gray-300 hover:bg-teal-600 hover:text-white'
-              }`}
-            >
-              Sortino Ratio Calculator
-            </button>
-          </nav>
-        </div>
+        </header>
 
-        {/* Render the selected tool */}
-        <main className="flex-1 w-full max-w-4xl flex flex-col items-center">
-          {renderTool()}
+        <nav className="flex flex-wrap justify-center gap-4 py-4 mb-8 w-full max-w-4xl">
+          <button
+            onClick={() => setActiveTool("roi")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "roi"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            ROI Calculator
+          </button>
+          <button
+            onClick={() => setActiveTool("breakeven")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "breakeven"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            Breakeven Calculator
+          </button>
+          <button
+            onClick={() => setActiveTool("sharpe")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "sharpe"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            Sharpe Ratio
+          </button>
+          <button
+            onClick={() => setActiveTool("sortino")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "sortino"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            Sortino Ratio
+          </button>
+          <button
+            onClick={() => setActiveTool("greeks")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
+              activeTool === "greeks"
+                ? "bg-teal-500 text-white shadow-lg scale-105"
+                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            }`}
+          >
+            Greeks
+          </button>
+        </nav>
+
+        <main className="w-full max-w-4xl">
+          {renderTool(activeTool)}
         </main>
 
-        {/* Disclaimer and Footer */}
-        <footer className="w-full max-w-4xl mt-12 py-8 text-center text-xs text-gray-500 border-t border-gray-700">
-          <div className="mb-4 text-red-400 font-bold">
-            <p>RISK DISCLAIMER:</p>
-            <p>The calculators and tools provided on this website are for informational and educational purposes only. They are not intended as financial advice. All investments, including options trading, involve risk. Please consult with a qualified financial advisor before making any investment decisions.</p>
+        <footer className="w-full max-w-4xl text-center mt-auto py-8 text-gray-500 text-sm">
+          <div className="border-t border-gray-700 pt-4">
+            <p className="font-medium text-red-400">RISK DISCLAIMER:</p>
+            <p className="text-xs mt-1 max-w-2xl mx-auto">
+              The calculators and tools provided on this website are for informational and educational purposes only. They are not intended as financial advice. All investments, including options trading, involve risk. Please consult with a qualified financial advisor before making any investment decisions.
+            </p>
           </div>
-          <div>
-            <p>&copy; {new Date().getFullYear()} Options Tools. All Rights Reserved.</p>
-            <p>Powered by Next.js and Tailwind CSS.</p>
+          <div className="mt-4">
+            &copy; {currentYear} TradeToolsHub. All Rights Reserved.
+          </div>
+          <div className="mt-1 text-xs text-gray-600">
+            Powered by Next.js and Tailwind CSS.
           </div>
         </footer>
       </div>
-    </div>
+    </>
   );
-};
-
-export default HomePage;
+}
