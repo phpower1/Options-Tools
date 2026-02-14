@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import ROICalculator from './ROICalculator';
-import BreakevenCalculator from './BreakevenCalculator';
-import SharpeRatioCalculator from './SharpeRatioCalculator';
-import SortinoRatioCalculator from './SortinoRatioCalculator';
-import GreeksCalculator from './GreeksCalculator';
-import ImpliedVolatilityCalculator from './ImpliedVolatilityCalculator';
-import MaxPainCalculator from './MaxPainCalculator';
+import dynamic from 'next/dynamic';
+
+const ROICalculator = dynamic(() => import('./ROICalculator'), { ssr: false });
+const BreakevenCalculator = dynamic(() => import('./BreakevenCalculator'), { ssr: false });
+const SharpeRatioCalculator = dynamic(() => import('./SharpeRatioCalculator'), { ssr: false });
+const SortinoRatioCalculator = dynamic(() => import('./SortinoRatioCalculator'), { ssr: false });
+const GreeksCalculator = dynamic(() => import('./GreeksCalculator'), { ssr: false });
+const ImpliedVolatilityCalculator = dynamic(() => import('./ImpliedVolatilityCalculator'), { ssr: false });
+const MaxPainCalculator = dynamic(() => import('./MaxPainCalculator'), { ssr: false });
+const MarginCalculator = dynamic(() => import('./MarginCalculator'), { ssr: false });
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -35,7 +38,8 @@ const jsonLd = {
         "https://www.tradetoolshub.com/?tool=sortino-ratio-calculator",
         "https://www.tradetoolshub.com/?tool=greeks-calculator",
         "https://www.tradetoolshub.com/?tool=iv-calculator",
-        "https://www.tradetoolshub.com/?tool=max-pain-calculator"
+        "https://www.tradetoolshub.com/?tool=max-pain-calculator",
+        "https://www.tradetoolshub.com/?tool=margin-calculator"
       ]
     }
   }
@@ -57,6 +61,8 @@ const renderTool = (tool: string) => {
       return <ImpliedVolatilityCalculator />;
     case 'max-pain':
       return <MaxPainCalculator />;
+    case 'margin':
+      return <MarginCalculator />;
     default:
       return null;
   }
@@ -85,71 +91,73 @@ export default function HomePage() {
         <nav className="flex flex-wrap justify-center gap-4 py-4 mb-8 w-full max-w-4xl">
           <button
             onClick={() => setActiveTool("roi")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "roi"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "roi"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             ROI Calculator
           </button>
           <button
             onClick={() => setActiveTool("breakeven")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "breakeven"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "breakeven"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             Breakeven Calculator
           </button>
           <button
             onClick={() => setActiveTool("sharpe")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "sharpe"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "sharpe"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             Sharpe Ratio
           </button>
           <button
             onClick={() => setActiveTool("sortino")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "sortino"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "sortino"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             Sortino Ratio
           </button>
           <button
             onClick={() => setActiveTool("greeks")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "greeks"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "greeks"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             Greeks
           </button>
           <button
+            onClick={() => setActiveTool("margin")}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "margin"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
+          >
+            Margin Calculator
+          </button>
+          <button
             onClick={() => setActiveTool("iv")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "iv"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "iv"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             IV Calculator
           </button>
           <button
             onClick={() => setActiveTool("max-pain")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${
-              activeTool === "max-pain"
-                ? "bg-teal-500 text-white shadow-lg scale-105"
-                : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-            }`}
+            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "max-pain"
+              ? "bg-teal-500 text-white shadow-lg scale-105"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+              }`}
           >
             Max Pain
           </button>
