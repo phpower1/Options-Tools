@@ -168,13 +168,6 @@ const MarginCalculator = () => {
                         </div>
                     </div>
 
-                    {results && (
-                        <MarginChart
-                            initialCapital={initialCapital}
-                            marginLoan={marginLoan}
-                            interestCost={results.interestCost}
-                        />
-                    )}
                 </div>
 
                 {/* Results */}
@@ -247,6 +240,17 @@ const MarginCalculator = () => {
                     )}
                 </div>
             </div>
+
+            {results && (
+                <div className="mt-8">
+                    <MarginChart
+                        initialCapital={initialCapital}
+                        marginLoan={marginLoan}
+                        interestCost={results.interestCost}
+                    />
+                </div>
+            )}
+
 
             <div className="text-gray-400 text-sm mt-8 space-y-4">
                 <h2 className="text-xl md:text-2xl font-bold text-gray-200">Understanding Margin Trading</h2>
