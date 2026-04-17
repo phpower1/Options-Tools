@@ -255,21 +255,21 @@ const ROICalculator = () => {
 
       {/* SEO-friendly descriptive content */}
       <div className="text-gray-400 text-sm mt-8 space-y-4">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is this Options Calculator?</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is this Options ROI Calculator?</h2>
         <p>
-          This is an essential tool for options traders looking to quickly analyze the profitability of their trades. Our **options calculator** provides three key metrics: **Return on Investment (ROI)**, **Annualized ROI**, and **Premium per Day**. By entering your initial investment, the premium received (or paid), and the duration of the trade, you can get a clear picture of a trade's performance. This is particularly useful for comparing multiple options contracts or strategies side-by-side.
+          This is an essential tool for options traders looking to quickly analyze the profitability of their trades. Our <strong>options ROI calculator</strong> provides three key metrics: <strong>Return on Investment (ROI)</strong>, <strong>Annualized ROI</strong>, and <strong>Premium per Day</strong>. By entering your initial investment, the premium received (or paid), and the duration of the trade, you can get a clear picture of a trade&apos;s performance. This is particularly useful for comparing multiple options contracts or strategies side-by-side.
         </p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
         <p>
-          The **options ROI calculator** uses simple formulas to provide accurate results. The **ROI** is calculated by dividing the premium by the initial investment, giving you a percentage return on your capital. The **Premium per Day** metric shows you the daily cash flow from the trade, which is a great way to evaluate the effectiveness of your strategy over time. Finally, the **Annualized ROI** projects your return over a full year, giving you a powerful metric to compare short-term options trades to long-term investments.
+          The <strong>options ROI calculator</strong> uses simple formulas to provide accurate results. <strong>ROI</strong> is calculated by dividing the premium by the initial investment, giving you a percentage return on your capital. The <strong>Premium per Day</strong> metric shows you the daily cash flow from the trade — a great way to evaluate the effectiveness of your strategy over time. Finally, <strong>Annualized ROI</strong> projects your return over a full year, giving you a powerful metric to compare short-term options trades to long-term investments.
         </p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Enter the **Initial Investment ($)**: The amount of collateral or margin required for your trade.</li>
-          <li>Enter the **Premium ($)**: The net profit or loss you received from the trade.</li>
-          <li>Enter the **Duration (Days)**: The number of days the trade was open.</li>
-          <li>Click the **Add Investment** button to compare up to three different trades.</li>
-          <li>Your results will appear automatically, helping you make informed trading decisions. All your data is saved locally for easy access on your next visit.</li>
+          <li>Enter the <strong>Initial Investment ($)</strong>: The amount of collateral or margin required for your trade.</li>
+          <li>Enter the <strong>Premium ($)</strong>: The net profit or loss you received from the trade.</li>
+          <li>Enter the <strong>Duration (Days)</strong>: The number of days the trade was open.</li>
+          <li>Click the <strong>Add Investment</strong> button to compare up to three different trades.</li>
+          <li>Your results appear automatically. All data is saved locally for easy access on your next visit.</li>
         </ol>
       </div>
     </div>

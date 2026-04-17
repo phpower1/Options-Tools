@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, DollarSign, Percent } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
 import MarginChart from './MarginChart';
 
 const MarginCalculator = () => {
@@ -253,15 +253,30 @@ const MarginCalculator = () => {
 
 
             <div className="text-gray-400 text-sm mt-8 space-y-4">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-200">Understanding Margin Trading</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is the Margin Calculator?</h2>
                 <p>
-                    Margin trading involves borrowing money from your broker to purchase stock. This allows you to buy more stock than you'd be able to normally.
+                    The <strong>margin calculator</strong> helps you understand the financial impact of trading with borrowed capital. <strong>Margin trading</strong> means borrowing money from your broker to increase your buying power beyond what your cash alone would allow. This <strong>leverage amplifies both gains and losses</strong> — making it a powerful but high-risk strategy. This tool lets you model different scenarios side-by-side, so you can see the exact effect of leverage on your returns and understand when a margin call might be triggered.
                 </p>
-                <ul className="list-disc list-inside space-y-1">
-                    <li><strong>Leverage:</strong> Magnifies both gains and losses.</li>
-                    <li><strong>Interest:</strong> You pay interest on the borrowed money, which raises your breakeven point.</li>
-                    <li><strong>Margin Call:</strong> If your account value falls below a certain level (maintenance margin), you may be forced to deposit more cash or sell assets.</li>
+
+                <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
+                <p>
+                    The calculator computes outcomes across three key dimensions:
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                    <li><strong>Leverage Effect:</strong> Your total buying power is your initial capital plus the margin loan. Any gain or loss on the full position is applied to your equity, amplifying the percentage return on your own capital.</li>
+                    <li><strong>Interest Cost:</strong> The margin loan accrues interest daily at your broker&apos;s annual rate. This cost is subtracted from your gross profit to show true net return.</li>
+                    <li><strong>Margin Call Risk:</strong> If your portfolio value falls far enough that your equity drops below the broker&apos;s maintenance margin requirement (typically 25–30%), you face a margin call — forcing you to deposit more cash or liquidate positions.</li>
                 </ul>
+
+                <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
+                <ol className="list-decimal list-inside space-y-2">
+                    <li>Enter your <strong>Initial Capital ($)</strong>: the cash you&apos;re contributing to the position.</li>
+                    <li>Enter the <strong>Margin Loan ($)</strong>: the amount you&apos;re borrowing from your broker.</li>
+                    <li>Enter the <strong>Annual Interest Rate (%)</strong>: your broker&apos;s margin loan rate.</li>
+                    <li>Enter the <strong>Duration (Days)</strong>: how long you plan to hold the position.</li>
+                    <li>Adjust the <strong>Stock Price Change (%)</strong> slider to model different market scenarios.</li>
+                    <li>The calculator shows your <strong>net return with and without margin</strong>, the leverage multiplier, and the <strong>margin call threshold</strong> to avoid.</li>
+                </ol>
             </div>
 
         </div >

@@ -313,26 +313,31 @@ export default function ImpliedVolatilityCalculator() {
       </div>
 
       <div className="p-4 md:p-8 space-y-4 text-gray-300 w-full max-w-4xl mx-auto my-8">
+        <h2 className="text-xl md:text-2xl font-semibold text-white">
+          What is the Implied Volatility (IV) Calculator?
+        </h2>
+        <p className="text-gray-400">
+          <strong>Implied Volatility (IV)</strong> is a key metric in options trading that represents the market&apos;s expectation of future price swings for an underlying asset. Unlike historical volatility, which is backward-looking, IV is forward-looking and directly embedded in an option&apos;s market price. A higher IV makes options more expensive; lower IV makes them cheaper. This <strong>IV calculator</strong> lets you back-solve for implied volatility from any option&apos;s market price — useful for identifying over- or under-priced contracts.
+        </p>
+
         <h3 className="text-xl md:text-2xl font-semibold text-white">
-          What is Implied Volatility (IV)?
+          How It Works
         </h3>
         <p className="text-gray-400">
-          **Implied Volatility (IV)** is a key metric in options trading that represents the market's expectation of future volatility for an underlying asset. Unlike historical volatility, which is based on past price movements, IV is forward-looking and is a crucial component of an option's price. A higher IV suggests that the market expects larger price swings in the future, which makes options more expensive.
+          The Black-Scholes model prices an option given a volatility input. This calculator reverses that process: given the observed market price, it iteratively searches for the volatility value that would produce that price. This technique — known as <strong>Newton-Raphson iteration</strong> — starts with an initial volatility guess (20%) and refines it on each step using the option&apos;s Vega until the calculated price converges with the market price. The result is the market&apos;s implied expectation of future volatility, expressed as an annualized percentage.
         </p>
 
         <h3 className="text-xl md:text-2xl font-semibold text-white">
           How to Use the Tool
         </h3>
         <ol className="list-decimal list-inside space-y-2 text-gray-400">
-          <li>
-            **Enter Inputs**: Fill in the required fields: **Stock Price**, **Strike Price**, **Option Price**, **Days to Expiration**, and **Risk-Free Rate**.
-          </li>
-          <li>
-            **Select Option Type**: Choose whether you are trading a Call or a Put option.
-          </li>
-          <li>
-            **Review Results**: The Implied Volatility will be calculated and displayed automatically. You can use this value to determine if the option is under- or over-valued compared to historical or expected volatility.
-          </li>
+          <li>Select your <strong>Option Type</strong>: choose Call or Put.</li>
+          <li>Enter the <strong>Stock Price ($)</strong>: the current market price of the underlying asset.</li>
+          <li>Enter the <strong>Strike Price ($)</strong>: the option&apos;s exercise price.</li>
+          <li>Enter the <strong>Option Price ($)</strong>: the current market price (premium) of the option contract.</li>
+          <li>Enter <strong>Days to Expiration</strong>: the number of calendar days remaining until expiry.</li>
+          <li>Enter the <strong>Risk-Free Rate (%)</strong>: typically the current U.S. T-bill rate.</li>
+          <li>The <strong>Implied Volatility</strong> is calculated automatically. Compare it to historical volatility to assess whether the option is relatively cheap or expensive.</li>
         </ol>
       </div>
     </>

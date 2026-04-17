@@ -99,15 +99,23 @@ export default function MaxPainCalculator() {
 
         {/* SEO-rich content and instructions */}
         <section className="mt-8 space-y-4 text-gray-400">
-          <h3 className="text-2xl font-bold text-teal-400">What is the Max Pain Theory?</h3>
-          <p className="text-gray-300">
-            The **Max Pain theory** suggests that an underlying asset's price, at the expiration of its options contracts, will gravitate towards the **"maximum pain"** strike price. This is the strike price at which the largest number of options (both calls and puts) would expire worthless. For options traders, understanding the max pain point can provide a key insight into market dynamics and potential price movements.
+          <h2 className="text-2xl font-bold text-gray-200">What is the Max Pain Calculator?</h2>
+          <p className="text-gray-400">
+            The <strong>Max Pain calculator</strong> is based on the <strong>Max Pain theory</strong>, which suggests that the price of an underlying asset tends to gravitate toward the <strong>max pain strike</strong> at options expiration. This is the strike price at which the largest number of open options contracts — both calls and puts — would expire worthless, resulting in the maximum financial loss for option buyers. For options traders, understanding the max pain point offers a key insight into market dynamics, institutional behavior, and potential price pinning near expiry.
           </p>
 
-          <h3 className="text-2xl font-bold text-teal-400">How to Use the Tool</h3>
-          <p className="text-gray-300">
-            To use a real-world Max Pain calculator, you need to input real-time open interest data for all outstanding call and put options. The calculator would then aggregate this data to determine the strike price with the highest total value of open contracts, which is considered the max pain point. While this calculator uses mock data to demonstrate the concept, it provides a solid foundation for a more advanced tool.
+          <h3 className="text-2xl font-bold text-gray-300">How It Works</h3>
+          <p className="text-gray-400">
+            For each strike price in the option chain, the calculator totals the dollar value of all in-the-money calls and puts that would expire worthless if the stock settled at that strike. Specifically, it sums: (a) the intrinsic value of all <strong>puts</strong> with a strike above the current strike (they&apos;d be in-the-money), and (b) the intrinsic value of all <strong>calls</strong> with a strike below the current strike. The strike that produces the highest combined payout to option sellers — and therefore the most pain to option buyers — is the <strong>max pain price</strong>.
           </p>
+
+          <h3 className="text-2xl font-bold text-gray-300">How to Use the Tool</h3>
+          <ol className="list-decimal list-inside space-y-2 text-gray-400">
+            <li>The calculator currently uses <strong>sample open interest data</strong> to demonstrate the max pain concept across a set of strike prices.</li>
+            <li>The <strong>Max Pain Strike</strong> shown is the price at which the aggregate payout to option buyers is minimized — and therefore the most contracts would expire worthless.</li>
+            <li>Compare the max pain strike to the current stock price to gauge how far the price would need to move (or stay) for maximum option seller benefit.</li>
+            <li>In practice, use this tool with real open interest data from your broker or a financial data provider to calculate max pain for any expiration date.</li>
+          </ol>
         </section>
       </div>
     </>

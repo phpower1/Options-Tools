@@ -158,20 +158,20 @@ const BreakevenCalculator = () => {
 
       {/* SEO-friendly descriptive content */}
       <div className="text-gray-400 text-sm mt-8 space-y-4">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is a Breakeven Calculator?</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is an Options Breakeven Calculator?</h2>
         <p>
-          A **breakeven calculator** is a critical tool for options traders to determine the price at which a stock must trade for an options position to be neither profitable nor at a loss. Knowing your **breakeven point** is essential for risk management and for setting realistic price targets for your trades. This tool simplifies a key part of **options analysis**, helping you make more informed trading decisions.
+          An <strong>options breakeven calculator</strong> is a critical tool for traders to determine the exact price at which a stock must trade for an options position to be neither profitable nor at a loss. Knowing your <strong>breakeven point</strong> is essential for risk management and for setting realistic price targets. This tool simplifies a key part of <strong>options analysis</strong>, helping you make more informed trading decisions on both calls and puts.
         </p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
         <p>
-          This calculator works based on a simple formula. For **call options**, the breakeven price is the strike price plus the premium paid. For **put options**, the breakeven price is the strike price minus the premium paid. By calculating these values, you can instantly see the price target for your trade.
+          The breakeven calculation uses two simple formulas depending on the option type. For <strong>call options</strong>, the breakeven price equals the strike price plus the premium paid — the stock must rise above this level for the trade to be profitable. For <strong>put options</strong>, the breakeven price equals the strike price minus the premium paid — the stock must fall below this level. These formulas account for the cost of entering the position, giving you a realistic profit target before you place a trade.
         </p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Select your **Options Strategy**: Choose between a **Call** or a **Put** option.</li>
-          <li>Enter the **Strike Price ($)**: This is the price at which the option can be exercised.</li>
-          <li>Enter the **Premium Paid ($)**: The total cost of the options contract.</li>
-          <li>The **Breakeven Price** will be calculated and displayed automatically.</li>
+          <li>Select your <strong>Option Type</strong>: Choose between a <strong>Call</strong> or a <strong>Put</strong>.</li>
+          <li>Enter the <strong>Strike Price ($)</strong>: The price at which the option can be exercised.</li>
+          <li>Enter the <strong>Premium Paid ($)</strong>: The total cost per share of the options contract.</li>
+          <li>The <strong>Breakeven Price</strong> is calculated and displayed automatically.</li>
         </ol>
       </div>
     </div>

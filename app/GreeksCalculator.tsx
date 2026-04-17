@@ -362,28 +362,29 @@ export default function GreeksCalculator() {
       </div>
 
       <div className="p-4 md:p-8 space-y-4 text-gray-300 w-full max-w-4xl mx-auto my-8">
-        <h3 className="text-xl md:text-2xl font-semibold text-white">
-          What are the Greeks?
-        </h3>
+        <h2 className="text-xl md:text-2xl font-semibold text-white">
+          What is the Options Greeks Calculator?
+        </h2>
         <p className="text-gray-400">
-          The **Greeks** are a set of metrics used in options trading to measure the sensitivity of an option's price to various factors, such as the underlying asset's price, volatility, and time decay. They are essential tools for a trader to understand the risk and reward of an options contract. This calculator will provide the values for Delta, Gamma, Theta, and Vega.
+          The <strong>options Greeks</strong> are a set of risk metrics that measure the sensitivity of an option&apos;s price to various factors — including the underlying asset&apos;s price, time to expiration, and implied volatility. Understanding the Greeks is essential for managing the risk and reward profile of any options position. This <strong>Greeks calculator</strong> uses the Black-Scholes model to compute <strong>Delta</strong>, <strong>Gamma</strong>, <strong>Theta</strong>, and <strong>Vega</strong> for any call or put option.
         </p>
 
         <h3 className="text-xl md:text-2xl font-semibold text-white">
-          Understanding the Metrics
+          How It Works
         </h3>
-        <ul className="space-y-4 text-gray-400 list-disc list-inside">
+        <p className="text-gray-400">Each Greek measures a different dimension of risk:</p>
+        <ul className="space-y-3 text-gray-400 list-disc list-inside">
           <li>
-            **Delta ($\Delta$)**: Delta measures the change in an option's price for every one-dollar change in the underlying asset's price. For example, a call option with a Delta of 0.50 means the option's price will increase by $0.50 if the underlying stock price rises by $1.00.
+            <strong>Delta (Δ)</strong>: Measures the change in an option&apos;s price for every $1 move in the underlying asset. A call with Delta 0.50 gains $0.50 for every $1 rise in the stock. Delta ranges from 0 to 1 for calls and -1 to 0 for puts.
           </li>
           <li>
-            **Gamma ($\Gamma$)**: Gamma measures the rate of change of an option's Delta. It tells you how much the Delta will change for every one-dollar move in the underlying asset. A high Gamma indicates that the Delta will change rapidly, making the option more sensitive to price movements.
+            <strong>Gamma (Γ)</strong>: Measures the rate of change of Delta for every $1 move in the underlying. A high Gamma means Delta shifts rapidly, making the position more sensitive to price swings — important near expiration.
           </li>
           <li>
-            **Theta ($\Theta$)**: Theta measures the rate at which an option's value decays over time. It is often referred to as "time decay." A negative Theta means the option's value decreases each day as it approaches expiration.
+            <strong>Theta (Θ)</strong>: Measures daily time decay — how much value the option loses each day as expiration approaches. Options sellers benefit from negative Theta; buyers are hurt by it.
           </li>
           <li>
-            **Vega ($\nu$)**: Vega measures an option's sensitivity to changes in the implied volatility of the underlying asset. A high Vega means the option's value will increase significantly if implied volatility rises.
+            <strong>Vega (ν)</strong>: Measures sensitivity to a 1% change in implied volatility. A high Vega means the option&apos;s price is strongly affected by changes in market volatility expectations.
           </li>
         </ul>
 
@@ -391,15 +392,13 @@ export default function GreeksCalculator() {
           How to Use the Tool
         </h3>
         <ol className="list-decimal list-inside space-y-2 text-gray-400">
-          <li>
-            **Select Option Type**: Choose whether you are trading a Call or a Put option.
-          </li>
-          <li>
-            **Enter Inputs**: Fill in the required fields, including the **Stock Price**, **Strike Price**, **Days to Expiration**, **Implied Volatility**, and **Risk-Free Rate**.
-          </li>
-          <li>
-            **Review Results**: The Greeks (Delta, Gamma, Theta, and Vega) will be calculated and displayed automatically.
-          </li>
+          <li>Select your <strong>Option Type</strong>: choose Call or Put.</li>
+          <li>Enter the <strong>Stock Price ($)</strong>: the current price of the underlying asset.</li>
+          <li>Enter the <strong>Strike Price ($)</strong>: the price at which the option can be exercised.</li>
+          <li>Enter <strong>Days to Expiration</strong>: the number of calendar days until the option expires.</li>
+          <li>Enter <strong>Implied Volatility (%)</strong>: the market&apos;s expected annualized volatility for the underlying.</li>
+          <li>Enter the <strong>Risk-Free Rate (%)</strong>: typically the current U.S. T-bill or Fed funds rate.</li>
+          <li><strong>Delta, Gamma, Theta, and Vega</strong> are calculated and displayed automatically.</li>
         </ol>
       </div>
     </>

@@ -184,26 +184,24 @@ const SortinoRatioCalculator = () => {
       <div className="text-gray-400 text-sm mt-8 space-y-4">
         <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is the Sortino Ratio?</h2>
         <p>
-          The **Sortino Ratio** is a variation of the Sharpe Ratio that differentiates between harmful and harmless volatility. Instead of using a fund's total standard deviation, it focuses on **downside deviation**, which is the volatility of negative returns. This provides a clearer picture of an investment's risk-adjusted return by only penalizing returns that fall below a specified target or minimum acceptable return. A higher Sortino Ratio indicates a better risk-adjusted return, with a focus on downside risk.
+          The <strong>Sortino Ratio</strong> is a variation of the Sharpe Ratio that differentiates between harmful and harmless volatility. Instead of penalizing all volatility, it focuses exclusively on <strong>downside deviation</strong> — the volatility of negative returns below a target threshold. This makes it a more precise <strong>risk-adjusted performance metric</strong> for options strategies and portfolios with asymmetric payoff profiles, where upside volatility is not a risk.
         </p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
         <p>
-          The formula for the Sortino Ratio is $Sortino Ratio = (R_p - R_f) / \sigma_d$, where:
-          <ul>
-            <li>$R_p$ is the **Return of the Investment** or portfolio.</li>
-            <li>$R_f$ is the **Risk-Free Rate of Return**, typically the return on a low-risk investment like a government bond.</li>
-            <li>$\sigma_d$ is the **Downside Deviation**, which measures the volatility of returns that fall below the risk-free rate.</li>
-          </ul>
+          The Sortino Ratio uses the formula: <strong>Sortino Ratio = (Portfolio Return − Risk-Free Rate) / Downside Deviation</strong>. The key distinction from the Sharpe Ratio is in the denominator:
         </p>
-        <p>
-          This **options tool** helps you evaluate how well an investment performed relative to the risk of losing money.
-        </p>
+        <ul className="list-disc list-inside space-y-1">
+          <li><strong>Portfolio Return (Rp)</strong>: The total percentage gain or loss of your investment.</li>
+          <li><strong>Risk-Free Rate (Rf)</strong>: The return from a low-risk benchmark such as U.S. Treasury bills.</li>
+          <li><strong>Downside Deviation (σd)</strong>: Only measures the volatility of returns that fall <em>below</em> the risk-free rate, ignoring upside swings.</li>
+        </ul>
+        <p>A higher Sortino Ratio means the strategy generates strong returns relative to the risk of loss, without being penalized for beneficial upside volatility.</p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Enter the **Investment Return (%)**: The percentage gain (or loss) of your investment.</li>
-          <li>Enter the **Risk-Free Rate (%)**: The return of a low-risk investment (e.g., U.S. Treasury bills).</li>
-          <li>Enter the **Downside Deviation (%)**: The volatility of returns that fall below the risk-free rate.</li>
-          <li>The **Sortino Ratio** will be calculated and displayed automatically.</li>
+          <li>Enter the <strong>Investment Return (%)</strong>: The percentage gain or loss of your portfolio or strategy.</li>
+          <li>Enter the <strong>Risk-Free Rate (%)</strong>: The return of a low-risk benchmark (e.g., U.S. T-bill rate).</li>
+          <li>Enter the <strong>Downside Deviation (%)</strong>: The volatility of returns that fall below the risk-free rate.</li>
+          <li>The <strong>Sortino Ratio</strong> is calculated automatically, along with a rating guide to help you interpret the result.</li>
         </ol>
       </div>
     </div>

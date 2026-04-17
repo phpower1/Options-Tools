@@ -184,26 +184,24 @@ const SharpeRatioCalculator = () => {
       <div className="text-gray-400 text-sm mt-8 space-y-4">
         <h2 className="text-xl md:text-2xl font-bold text-gray-200">What is the Sharpe Ratio?</h2>
         <p>
-          The **Sharpe Ratio** is a crucial metric in finance for investors and options traders. It measures the performance of an investment by adjusting for its risk. In simple terms, it tells you whether the excess return of an investment is due to smart decisions or simply taking on too much risk. A higher Sharpe Ratio indicates a better risk-adjusted return. This **financial calculator** is essential for comparing investments with different risk profiles.
+          The <strong>Sharpe Ratio</strong> is a widely-used metric in finance for measuring the risk-adjusted performance of an investment or portfolio. It tells you whether the returns you are earning are the result of smart decisions or simply a consequence of taking on excessive risk. A higher Sharpe Ratio indicates better <strong>risk-adjusted return</strong>. This <strong>Sharpe Ratio calculator</strong> is essential for comparing options strategies, portfolios, or any investment with different risk profiles.
         </p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
         <p>
-          The formula for the Sharpe Ratio is $Sharpe Ratio = (R_p - R_f) / \sigma_p$, where:
-          <ul>
-            <li>$R_p$ is the **Return of the Investment** or portfolio.</li>
-            <li>$R_f$ is the **Risk-Free Rate of Return**, typically the return on a low-risk investment like a government bond.</li>
-            <li>$\sigma_p$ is the **Standard Deviation of the Investment's Return**, which measures the volatility or risk.</li>
-          </ul>
+          The Sharpe Ratio is calculated using the formula: <strong>Sharpe Ratio = (Portfolio Return − Risk-Free Rate) / Standard Deviation</strong>. Each component plays a specific role:
         </p>
-        <p>
-          This **options tool** helps you determine if the returns you are receiving are adequate compensation for the risk you're taking on.
-        </p>
+        <ul className="list-disc list-inside space-y-1">
+          <li><strong>Portfolio Return (Rp)</strong>: The total percentage gain or loss of your investment.</li>
+          <li><strong>Risk-Free Rate (Rf)</strong>: The return from a low-risk benchmark, typically U.S. Treasury bills.</li>
+          <li><strong>Standard Deviation (σp)</strong>: Measures the total volatility of your investment&apos;s returns, both upside and downside.</li>
+        </ul>
+        <p>The result tells you how many units of excess return you earn per unit of risk taken.</p>
         <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Enter the **Investment Return (%)**: The percentage gain (or loss) of your investment.</li>
-          <li>Enter the **Risk-Free Rate (%)**: The return of a low-risk investment (e.g., U.S. Treasury bills).</li>
-          <li>Enter the **Standard Deviation (%)**: The volatility of your investment's returns.</li>
-          <li>The **Sharpe Ratio** will be calculated and displayed automatically.</li>
+          <li>Enter the <strong>Investment Return (%)</strong>: The percentage gain or loss of your portfolio or strategy.</li>
+          <li>Enter the <strong>Risk-Free Rate (%)</strong>: The return of a low-risk benchmark (e.g., U.S. T-bill rate).</li>
+          <li>Enter the <strong>Standard Deviation (%)</strong>: The historical volatility of your investment&apos;s returns.</li>
+          <li>The <strong>Sharpe Ratio</strong> is calculated automatically, along with a rating guide to help you interpret the result.</li>
         </ol>
       </div>
     </div>
