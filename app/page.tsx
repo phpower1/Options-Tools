@@ -1,77 +1,87 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-import { useState } from "react";
-import dynamic from 'next/dynamic';
+export const metadata: Metadata = {
+  title: "Free Options Trading Calculators | TradeToolsHub",
+  description:
+    "Free options trading calculators: ROI, Breakeven, Greeks (Delta/Gamma/Theta/Vega), Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, and Margin. Built for options traders.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Free Options Trading Calculators | TradeToolsHub",
+    description:
+      "Free options trading calculators: ROI, Breakeven, Greeks, IV, Sharpe, Sortino, Max Pain, Margin.",
+    url: "https://www.tradetoolshub.com/",
+  },
+};
 
-const ROICalculator = dynamic(() => import('./ROICalculator'), { ssr: false });
-const BreakevenCalculator = dynamic(() => import('./BreakevenCalculator'), { ssr: false });
-const SharpeRatioCalculator = dynamic(() => import('./SharpeRatioCalculator'), { ssr: false });
-const SortinoRatioCalculator = dynamic(() => import('./SortinoRatioCalculator'), { ssr: false });
-const GreeksCalculator = dynamic(() => import('./GreeksCalculator'), { ssr: false });
-const ImpliedVolatilityCalculator = dynamic(() => import('./ImpliedVolatilityCalculator'), { ssr: false });
-const MaxPainCalculator = dynamic(() => import('./MaxPainCalculator'), { ssr: false });
-const MarginCalculator = dynamic(() => import('./MarginCalculator'), { ssr: false });
+const tools = [
+  {
+    href: "/roi-calculator",
+    title: "ROI Calculator",
+    description:
+      "Calculate and compare return on investment across multiple options positions. Track tickers, premiums received, and holding durations side-by-side.",
+  },
+  {
+    href: "/breakeven-calculator",
+    title: "Breakeven Calculator",
+    description:
+      "Find the exact price the underlying stock needs to reach for your trade to break even, accounting for premiums paid or received on calls and puts.",
+  },
+  {
+    href: "/sharpe-ratio",
+    title: "Sharpe Ratio",
+    description:
+      "Measure risk-adjusted performance by comparing portfolio returns to their volatility. Assess whether your strategy's returns justify the total risk taken.",
+  },
+  {
+    href: "/sortino-ratio",
+    title: "Sortino Ratio",
+    description:
+      "Like the Sharpe Ratio, but only penalizes downside volatility — a more precise metric for options strategies with asymmetric payoff profiles.",
+  },
+  {
+    href: "/greeks-calculator",
+    title: "Greeks Calculator",
+    description:
+      "Calculate Delta, Gamma, Theta, Vega, and Rho for any options contract using the Black-Scholes model. Enter the underlying, strike, expiry, IV, and rate.",
+  },
+  {
+    href: "/implied-volatility",
+    title: "IV Calculator",
+    description:
+      "Back-solve for implied volatility from an option's market price. Input the observed price and contract details to calculate the market's implied IV instantly.",
+  },
+  {
+    href: "/max-pain-calculator",
+    title: "Max Pain Calculator",
+    description:
+      "Calculate the max pain price — the strike at which the most options expire worthless, causing maximum loss to buyers. Useful for anticipating price pinning near expiry.",
+  },
+  {
+    href: "/margin-calculator",
+    title: "Margin Calculator",
+    description:
+      "Estimate initial and maintenance margin requirements for selling options contracts. Understand your buying power consumption before entering a position.",
+  },
+];
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "TradeToolsHub.com | Options Trading Tools",
-  "description": "A comprehensive hub of financial calculators and tools to help you make informed decisions about options trading.",
-  "url": "https://www.tradetoolshub.com/",
-  "keywords": "options tools, options calculator, options trading, options strategy, ROI, breakeven, sharpe ratio, sortino ratio, stock trading, finance tools",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.tradetoolshub.com/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "mainContentOfPage": {
-    "@type": "WebPageElement",
-    "name": "Options Tools Navigation",
-    "description": "Navigate between various options trading calculators like ROI, Breakeven, Sharpe Ratio, and Sortino Ratio.",
-    "potentialAction": {
-      "@type": "SiteNavigationElement",
-      "name": "Navigation Links",
-      "url": [
-        "https://www.tradetoolshub.com/?tool=roi-calculator",
-        "https://www.tradetoolshub.com/?tool=breakeven-calculator",
-        "https://www.tradetoolshub.com/?tool=sharpe-ratio-calculator",
-        "https://www.tradetoolshub.com/?tool=sortino-ratio-calculator",
-        "https://www.tradetoolshub.com/?tool=greeks-calculator",
-        "https://www.tradetoolshub.com/?tool=iv-calculator",
-        "https://www.tradetoolshub.com/?tool=max-pain-calculator",
-        "https://www.tradetoolshub.com/?tool=margin-calculator"
-      ]
-    }
-  }
-};
-
-const renderTool = (tool: string) => {
-  switch (tool) {
-    case 'roi':
-      return <ROICalculator />;
-    case 'breakeven':
-      return <BreakevenCalculator />;
-    case 'sharpe':
-      return <SharpeRatioCalculator />;
-    case 'sortino':
-      return <SortinoRatioCalculator />;
-    case 'greeks':
-      return <GreeksCalculator />;
-    case 'iv':
-      return <ImpliedVolatilityCalculator />;
-    case 'max-pain':
-      return <MaxPainCalculator />;
-    case 'margin':
-      return <MarginCalculator />;
-    default:
-      return null;
-  }
+  "@type": "WebSite",
+  name: "TradeToolsHub",
+  url: "https://www.tradetoolshub.com/",
+  description:
+    "Free options trading calculators for ROI, Breakeven, Greeks, Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, and Margin.",
+  hasPart: tools.map((tool) => ({
+    "@type": "WebPage",
+    name: tool.title,
+    url: `https://www.tradetoolshub.com${tool.href}`,
+    description: tool.description,
+  })),
 };
 
 export default function HomePage() {
-  const [activeTool, setActiveTool] = useState("roi");
   const currentYear = new Date().getFullYear();
-
   return (
     <>
       <script
@@ -79,107 +89,54 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
-        <header className="w-full max-w-4xl text-center py-8">
+        <header className="w-full max-w-4xl text-center py-12">
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-200">
-            Options Tools
+            Options Trading Tools
           </h1>
-          <p className="text-lg md:text-xl font-medium text-gray-400 mt-2">
-            Select a tool to get started.
+          <p className="text-lg md:text-xl font-medium text-gray-300 mt-4 max-w-2xl mx-auto">
+            Free, browser-based calculators for options traders. No login required.
+          </p>
+          <p className="text-base text-gray-500 mt-3 max-w-2xl mx-auto">
+            From pricing and breakeven analysis to risk-adjusted performance and margin requirements
+            — everything you need to make more informed options trading decisions.
           </p>
         </header>
 
-        <nav className="flex flex-wrap justify-center gap-4 py-4 mb-8 w-full max-w-4xl">
-          <button
-            onClick={() => setActiveTool("roi")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "roi"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            ROI Calculator
-          </button>
-          <button
-            onClick={() => setActiveTool("breakeven")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "breakeven"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            Breakeven Calculator
-          </button>
-          <button
-            onClick={() => setActiveTool("sharpe")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "sharpe"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            Sharpe Ratio
-          </button>
-          <button
-            onClick={() => setActiveTool("sortino")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "sortino"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            Sortino Ratio
-          </button>
-          <button
-            onClick={() => setActiveTool("greeks")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "greeks"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            Greeks
-          </button>
-          <button
-            onClick={() => setActiveTool("margin")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "margin"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            Margin Calculator
-          </button>
-          <button
-            onClick={() => setActiveTool("iv")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "iv"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            IV Calculator
-          </button>
-          <button
-            onClick={() => setActiveTool("max-pain")}
-            className={`py-2 px-6 rounded-lg font-semibold transition-colors duration-300 transform ${activeTool === "max-pain"
-              ? "bg-teal-500 text-white shadow-lg scale-105"
-              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-          >
-            Max Pain
-          </button>
-        </nav>
-
         <main className="w-full max-w-4xl">
-          {renderTool(activeTool)}
+          <h2 className="text-xl font-semibold text-gray-300 mb-6 text-center">
+            Available Calculators
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {tools.map(({ href, title, description }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-teal-500 transition-colors duration-200"
+              >
+                <h3 className="text-lg font-bold text-teal-400 group-hover:text-teal-300 mb-2">
+                  {title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+                <span className="inline-block mt-4 text-xs font-semibold text-teal-500 group-hover:text-teal-300">
+                  Open tool →
+                </span>
+              </Link>
+            ))}
+          </div>
         </main>
 
-        <footer className="w-full max-w-4xl text-center mt-auto py-8 text-gray-500 text-sm">
+        <footer className="w-full max-w-4xl text-center mt-16 py-8 text-gray-500 text-sm">
           <div className="border-t border-gray-700 pt-4">
             <p className="font-medium text-red-400">RISK DISCLAIMER:</p>
             <p className="text-xs mt-1 max-w-2xl mx-auto">
-              The calculators and tools provided on this website are for informational and educational purposes only. They are not intended as financial advice. All investments, including options trading, involve risk. Please consult with a qualified financial advisor before making any investment decisions.
+              The calculators and tools provided on this website are for informational and
+              educational purposes only. They are not intended as financial advice. All investments,
+              including options trading, involve risk. Please consult with a qualified financial
+              advisor before making any investment decisions.
             </p>
           </div>
-          <div className="mt-4">
-            &copy; {currentYear} TradeToolsHub. All Rights Reserved.
-          </div>
-          <div className="mt-1 text-xs text-gray-600">
-            Powered by Next.js and Tailwind CSS.
-          </div>
+          <div className="mt-4">&copy; {currentYear} TradeToolsHub. All Rights Reserved.</div>
+          <div className="mt-1 text-xs text-gray-600">Powered by Next.js and Tailwind CSS.</div>
         </footer>
       </div>
     </>
