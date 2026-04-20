@@ -82,6 +82,19 @@ export default function Page() {
           ))}
         </div>
       </section>
+      <section className="w-full max-w-4xl mt-6 mb-4">
+        <h2 className="text-lg font-bold text-gray-300 mb-4">Related Tools</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Link href="/roi-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
+            <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">ROI Calculator</p>
+            <p className="text-gray-500 text-xs mt-1">Compare returns across your options positions.</p>
+          </Link>
+          <Link href="/breakeven-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
+            <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">Breakeven Calculator</p>
+            <p className="text-gray-500 text-xs mt-1">Find the price your trade needs to reach to break even.</p>
+          </Link>
+        </div>
+      </section>
       <footer className="w-full max-w-4xl text-center mt-auto py-8 text-gray-500 text-sm">
         <div className="border-t border-gray-700 pt-4">
           <p className="font-medium text-red-400">RISK DISCLAIMER:</p>
