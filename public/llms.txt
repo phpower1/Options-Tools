@@ -1,0 +1,31 @@
+# TradeToolsHub
+
+> Free, browser-based options trading calculators. No login, no signup, no data sent to any server. All calculations run locally in your browser.
+
+TradeToolsHub provides eight financial calculators built for options traders. Each tool is free to use and works entirely client-side. Tools cover return analysis, risk metrics, options pricing, and market structure.
+
+## Tools
+
+- [Options ROI Calculator](https://www.tradetoolshub.com/roi-calculator): Calculate Return on Investment (ROI), Annualized ROI, and Premium per Day for options trades. Compare up to three positions side-by-side by ticker, initial investment, premium received, and trade duration. Data is saved locally in the browser.
+
+- [Options Breakeven Calculator](https://www.tradetoolshub.com/breakeven-calculator): Calculate the breakeven price for call and put options. For calls: breakeven = strike + premium paid. For puts: breakeven = strike - premium paid. Useful for setting realistic profit targets before entering a trade.
+
+- [Sharpe Ratio Calculator](https://www.tradetoolshub.com/sharpe-ratio): Calculate the Sharpe Ratio for a portfolio or strategy. Formula: (Portfolio Return - Risk-Free Rate) / Standard Deviation. Measures risk-adjusted performance using total volatility. Includes a rating guide (Poor / Fair / Good / Excellent).
+
+- [Sortino Ratio Calculator](https://www.tradetoolshub.com/sortino-ratio): Calculate the Sortino Ratio, a variant of the Sharpe Ratio that only penalizes downside volatility. Formula: (Portfolio Return - Risk-Free Rate) / Downside Deviation. Better suited for options strategies with asymmetric payoffs. Includes a rating guide.
+
+- [Options Greeks Calculator](https://www.tradetoolshub.com/greeks-calculator): Calculate Delta, Gamma, Theta, and Vega for call or put options using the Black-Scholes model. Inputs: stock price, strike price, days to expiration, implied volatility (%), risk-free rate (%). Results update in real time.
+
+- [Implied Volatility (IV) Calculator](https://www.tradetoolshub.com/implied-volatility): Back-solve for implied volatility from an option's observed market price using the Newton-Raphson iterative method on the Black-Scholes model. Inputs: stock price, strike price, option market price, days to expiration, risk-free rate, option type (call/put).
+
+- [Max Pain Calculator](https://www.tradetoolshub.com/max-pain-calculator): Calculate the max pain strike — the price at which the greatest total dollar value of open options contracts would expire worthless at expiration. Based on open interest aggregation across all strikes. Demonstrates the max pain theory concept.
+
+- [Margin Calculator](https://www.tradetoolshub.com/margin-calculator): Calculate the impact of margin (leverage) on options and stock trades. Inputs: initial capital, margin loan, annual interest rate, duration (days), stock price change (%). Outputs: buying power, interest cost, net return with and without margin, leverage multiplier, and margin call threshold. Includes a visual chart.
+
+## About
+
+- All tools are free with no account required
+- Calculations run entirely in the browser — no data is transmitted
+- Input data is saved to browser localStorage for convenience on return visits
+- Built with Next.js and Tailwind CSS, hosted on Vercel
+- Risk disclaimer: tools are for educational purposes only and do not constitute financial advice
