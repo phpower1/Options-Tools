@@ -172,9 +172,9 @@ export default function ImpliedVolatilityCalculator() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="flex flex-col items-center justify-center p-4 md:p-8 space-y-8 bg-gray-800 text-white rounded-xl shadow-lg w-full max-w-4xl mx-auto my-8">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-200 text-center">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-200 text-center">
           Implied Volatility (IV) Calculator
-        </h1>
+        </h2>
         <p className="text-gray-400 text-center text-sm md:text-base mb-4">
           Calculate the implied volatility of a stock option.
         </p>

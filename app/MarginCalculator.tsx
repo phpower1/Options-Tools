@@ -88,9 +88,9 @@ const MarginCalculator = () => {
                 })
             }} />
 
-            <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
                 Margin Calculator
-            </h1>
+            </h2>
             <p className="text-center text-gray-400 mb-8">
                 See how leverage amplifies both your potential gains and losses.
             </p>

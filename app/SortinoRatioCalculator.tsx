@@ -91,9 +91,9 @@ const SortinoRatioCalculator = () => {
         })
       }} />
 
-      <h1 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-teal-400 mb-6">
         Sortino Ratio Calculator
-      </h1>
+      </h2>
       <p className="text-center text-gray-400 mb-8">
         Measure an investment's risk-adjusted return by focusing on downside volatility.
       </p>
