@@ -11,10 +11,37 @@ const MarginCalculator = () => {
     const [durationDays, setDurationDays] = useState<number>(365);
     const [stockPriceChange, setStockPriceChange] = useState<number>(10.0);
     const [results, setResults] = useState<any>(null);
+    const [isLocalStorageLoaded, setIsLocalStorageLoaded] = useState(false);
 
     useEffect(() => {
+        try {
+            const stored = localStorage.getItem('marginCalculatorState');
+            if (stored) {
+                const { initialCapital, marginLoan, interestRate, durationDays, stockPriceChange } = JSON.parse(stored);
+                if (initialCapital !== undefined) setInitialCapital(initialCapital);
+                if (marginLoan !== undefined) setMarginLoan(marginLoan);
+                if (interestRate !== undefined) setInterestRate(interestRate);
+                if (durationDays !== undefined) setDurationDays(durationDays);
+                if (stockPriceChange !== undefined) setStockPriceChange(stockPriceChange);
+            }
+        } catch (error) {
+            console.error('Failed to load margin calculator state:', error);
+        } finally {
+            setIsLocalStorageLoaded(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!isLocalStorageLoaded) return;
+        try {
+            localStorage.setItem('marginCalculatorState', JSON.stringify({
+                initialCapital, marginLoan, interestRate, durationDays, stockPriceChange,
+            }));
+        } catch (error) {
+            console.error('Failed to save margin calculator state:', error);
+        }
         calculateResults();
-    }, [initialCapital, marginLoan, interestRate, durationDays, stockPriceChange]);
+    }, [initialCapital, marginLoan, interestRate, durationDays, stockPriceChange, isLocalStorageLoaded]);
 
     const calculateResults = () => {
         const totalBuyingPower = initialCapital + marginLoan;
