@@ -128,6 +128,15 @@ export default function DailyThetaCalculator() {
   const currentThetaRate = hasCurrentTheta && validAccount > 0 ? (numericCurrentTheta / validAccount) * 100 : 0;
   const thetaDifference = hasCurrentTheta ? numericCurrentTheta - idealDailyTheta : 0;
 
+  // Current portfolio horizon totals
+  const currentWeeklyCalendar = numericCurrentTheta * 7;
+  const currentWeeklyTrading = numericCurrentTheta * 5;
+  const currentMonthly30 = numericCurrentTheta * 30;
+  const currentMonthlyTrading = numericCurrentTheta * 21;
+  const currentAnnualCalendar = numericCurrentTheta * 365;
+  const currentRealizedAnnual = currentAnnualCalendar * efficiencyMultiplier;
+  const currentRealizedAnnualReturn = validAccount > 0 ? (currentRealizedAnnual / validAccount) * 100 : 0;
+
   // Risk Rating based on rate
   const getRiskStatus = (rate: number) => {
     if (rate < 0.1) {
@@ -478,7 +487,7 @@ export default function DailyThetaCalculator() {
                 <Clock className="mr-2 text-purple-400" size={18} /> Current Portfolio Audit
               </h3>
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="bg-gray-800 p-3 rounded-lg">
+                <div className="bg-gray-800 p-3 rounded-lg border border-gray-700">
                   <p className="text-xs text-gray-400">Current Daily Theta</p>
                   <p className="text-xl font-bold text-white font-mono">
                     {formatExactCurrency(numericCurrentTheta)}
@@ -487,7 +496,7 @@ export default function DailyThetaCalculator() {
                     {currentThetaRate.toFixed(2)}% of account / day
                   </p>
                 </div>
-                <div className="bg-gray-800 p-3 rounded-lg">
+                <div className="bg-gray-800 p-3 rounded-lg border border-gray-700">
                   <p className="text-xs text-gray-400">Variance to Target</p>
                   <p
                     className={`text-xl font-bold font-mono ${
@@ -503,6 +512,30 @@ export default function DailyThetaCalculator() {
                   <p className="text-xs text-gray-400 mt-1">
                     {thetaDifference > 0 ? "Above target" : thetaDifference < 0 ? "Below target" : "On target"}
                   </p>
+                </div>
+              </div>
+
+              {/* Current Portfolio Time Horizon Grid */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-gray-800/80 p-3 rounded-lg border border-gray-700">
+                  <p className="text-xs text-gray-400">Weekly (7-Day Calendar)</p>
+                  <p className="text-lg font-bold text-white">{formatCurrency(currentWeeklyCalendar)}</p>
+                  <p className="text-[11px] text-gray-500">{formatCurrency(currentWeeklyTrading)} (5-day trading)</p>
+                </div>
+                <div className="bg-gray-800/80 p-3 rounded-lg border border-gray-700">
+                  <p className="text-xs text-gray-400">Monthly (~30 Days)</p>
+                  <p className="text-lg font-bold text-white">{formatCurrency(currentMonthly30)}</p>
+                  <p className="text-[11px] text-gray-500">{formatCurrency(currentMonthlyTrading)} (21-day trading)</p>
+                </div>
+                <div className="bg-gray-800/80 p-3 rounded-lg border border-gray-700">
+                  <p className="text-xs text-gray-400">Annual Gross Theta</p>
+                  <p className="text-lg font-bold text-teal-300">{formatCurrency(currentAnnualCalendar)}</p>
+                  <p className="text-[11px] text-gray-500">{(currentThetaRate * 365).toFixed(1)}% of account</p>
+                </div>
+                <div className="bg-gray-800/80 p-3 rounded-lg border border-gray-700">
+                  <p className="text-xs text-gray-400">Expected Realized P&L ({captureEfficiency}%)</p>
+                  <p className="text-lg font-bold text-green-400">{formatCurrency(currentRealizedAnnual)}</p>
+                  <p className="text-[11px] text-green-300/80">~{currentRealizedAnnualReturn.toFixed(1)}% annual return</p>
                 </div>
               </div>
 
