@@ -54,4 +54,10 @@
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
    </url>
+   <url>
+      <loc>https://www.tradetoolshub.com/daily-theta-calculator</loc>
+      <lastmod>2026-04-17</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
 </urlset>

@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Free Options Trading Calculators | TradeToolsHub",
   description:
-    "Free options trading calculators: ROI, Breakeven, Greeks (Delta/Gamma/Theta/Vega), Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, and Margin. Built for options traders.",
+    "Free options trading calculators: ROI, Breakeven, Greeks (Delta/Gamma/Theta/Vega), Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, Margin, and Daily Theta. Built for options traders.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Free Options Trading Calculators | TradeToolsHub",
     description:
-      "Free options trading calculators: ROI, Breakeven, Greeks, IV, Sharpe, Sortino, Max Pain, Margin.",
+      "Free options trading calculators: ROI, Breakeven, Greeks, IV, Sharpe, Sortino, Max Pain, Margin, Daily Theta.",
     url: "https://www.tradetoolshub.com/",
   },
 };
@@ -46,6 +46,12 @@ const tools = [
       "Calculate Delta, Gamma, Theta, Vega, and Rho for any options contract using the Black-Scholes model. Enter the underlying, strike, expiry, IV, and rate.",
   },
   {
+    href: "/daily-theta-calculator",
+    title: "Daily Theta Calculator",
+    description:
+      "Calculate your ideal daily portfolio Theta target based on account size, risk profile, and buying power allocation. Model realistic time decay capture.",
+  },
+  {
     href: "/implied-volatility",
     title: "IV Calculator",
     description:
@@ -71,7 +77,7 @@ const jsonLd = {
   name: "TradeToolsHub",
   url: "https://www.tradetoolshub.com/",
   description:
-    "Free options trading calculators for ROI, Breakeven, Greeks, Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, and Margin.",
+    "Free options trading calculators for ROI, Breakeven, Greeks, Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, Margin, and Daily Theta.",
   hasPart: tools.map((tool) => ({
     "@type": "WebPage",
     name: tool.title,

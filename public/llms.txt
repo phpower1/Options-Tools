@@ -2,7 +2,7 @@
 
 > Free, browser-based options trading calculators. No login, no signup, no data sent to any server. All calculations run locally in your browser.
 
-TradeToolsHub provides eight financial calculators built for options traders. Each tool is free to use and works entirely client-side. Tools cover return analysis, risk metrics, options pricing, and market structure.
+TradeToolsHub provides nine financial calculators built for options traders. Each tool is free to use and works entirely client-side. Tools cover return analysis, risk metrics, options pricing, and market structure.
 
 ## Tools
 
@@ -15,6 +15,8 @@ TradeToolsHub provides eight financial calculators built for options traders. Ea
 - [Sortino Ratio Calculator](https://www.tradetoolshub.com/sortino-ratio): Calculate the Sortino Ratio, a variant of the Sharpe Ratio that only penalizes downside volatility. Formula: (Portfolio Return - Risk-Free Rate) / Downside Deviation. Better suited for options strategies with asymmetric payoffs. Includes a rating guide.
 
 - [Options Greeks Calculator](https://www.tradetoolshub.com/greeks-calculator): Calculate Delta, Gamma, Theta, and Vega for call or put options using the Black-Scholes model. Inputs: stock price, strike price, days to expiration, implied volatility (%), risk-free rate (%). Results update in real time.
+
+- [Options Daily Theta Calculator](https://www.tradetoolshub.com/daily-theta-calculator): Calculate the ideal daily portfolio Theta for options sellers based on account net liquidity, risk appetite (Conservative 0.1%, Balanced 0.25%, Aggressive 0.45%), buying power deployment, and capture efficiency (25%–50%). Includes live portfolio theta audit, 90-day time decay projection chart, and sizing matrix. Data is saved locally in the browser.
 
 - [Implied Volatility (IV) Calculator](https://www.tradetoolshub.com/implied-volatility): Back-solve for implied volatility from an option's observed market price using the Newton-Raphson iterative method on the Black-Scholes model. Inputs: stock price, strike price, option market price, days to expiration, risk-free rate, option type (call/put).
 

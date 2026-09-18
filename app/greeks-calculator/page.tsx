@@ -89,9 +89,9 @@ export default function Page() {
             <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">IV Calculator</p>
             <p className="text-gray-500 text-xs mt-1">Back-solve for implied volatility from an option&apos;s market price.</p>
           </Link>
-          <Link href="/breakeven-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
-            <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">Breakeven Calculator</p>
-            <p className="text-gray-500 text-xs mt-1">Find the price your trade needs to reach to break even.</p>
+          <Link href="/daily-theta-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
+            <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">Daily Theta Calculator</p>
+            <p className="text-gray-500 text-xs mt-1">Calculate ideal daily portfolio time decay targets for options sellers.</p>
           </Link>
         </div>
       </section>

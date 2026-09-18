@@ -10,6 +10,7 @@ const tools = [
   { label: "Sortino Ratio", href: "/sortino-ratio" },
   { label: "Greeks", href: "/greeks-calculator" },
   { label: "Margin Calculator", href: "/margin-calculator" },
+  { label: "Daily Theta", href: "/daily-theta-calculator" },
   { label: "IV Calculator", href: "/implied-volatility" },
   { label: "Max Pain", href: "/max-pain-calculator" },
 ];
