@@ -182,15 +182,21 @@ export function calculateStateTax(
 }
 
 /**
- * Forward Tax Calculation: Computes all taxes given gross trading profit
+ * Internal core tax calculator for a given gross profit
  */
-export function calculateTaxes(params: TaxCalculationParams): TaxBreakdown {
+function computeCoreTaxes(params: TaxCalculationParams): {
+  federalOrdinaryTax: number;
+  federalLtcgTax: number;
+  federalTax: number;
+  stateTax: number;
+  nycTax: number;
+  niitTax: number;
+  totalTax: number;
+} {
   const { grossProfit, baselineIncome, filingStatus, stateCode, isNycResident, contractType } = params;
 
   if (grossProfit <= 0) {
     return {
-      grossProfit: 0,
-      netProfit: 0,
       federalOrdinaryTax: 0,
       federalLtcgTax: 0,
       federalTax: 0,
@@ -198,9 +204,6 @@ export function calculateTaxes(params: TaxCalculationParams): TaxBreakdown {
       nycTax: 0,
       niitTax: 0,
       totalTax: 0,
-      effectiveRate: 0,
-      marginalRate: 0,
-      contractType,
     };
   }
 
@@ -231,21 +234,7 @@ export function calculateTaxes(params: TaxCalculationParams): TaxBreakdown {
   );
 
   const totalTax = federalTax + stateTax + nycTax + niitTax;
-  const netProfit = grossProfit - totalTax;
-  const effectiveRate = grossProfit > 0 ? (totalTax / grossProfit) * 100 : 0;
-
-  // Approximate top combined marginal rate at the top dollar of profit
-  const delta = 100;
-  const deltaTax =
-    calculateTaxes({
-      ...params,
-      grossProfit: grossProfit + delta,
-    }).totalTax - totalTax;
-  const marginalRate = Math.min(100, Math.max(0, (deltaTax / delta) * 100));
-
   return {
-    grossProfit,
-    netProfit,
     federalOrdinaryTax,
     federalLtcgTax,
     federalTax,
@@ -253,6 +242,45 @@ export function calculateTaxes(params: TaxCalculationParams): TaxBreakdown {
     nycTax,
     niitTax,
     totalTax,
+  };
+}
+
+/**
+ * Forward Tax Calculation: Computes all taxes given gross trading profit
+ */
+export function calculateTaxes(params: TaxCalculationParams): TaxBreakdown {
+  const { grossProfit, contractType } = params;
+
+  if (grossProfit <= 0) {
+    return {
+      grossProfit: 0,
+      netProfit: 0,
+      federalOrdinaryTax: 0,
+      federalLtcgTax: 0,
+      federalTax: 0,
+      stateTax: 0,
+      nycTax: 0,
+      niitTax: 0,
+      totalTax: 0,
+      effectiveRate: 0,
+      marginalRate: 0,
+      contractType,
+    };
+  }
+
+  const core = computeCoreTaxes(params);
+  const netProfit = grossProfit - core.totalTax;
+  const effectiveRate = grossProfit > 0 ? (core.totalTax / grossProfit) * 100 : 0;
+
+  // Compute top marginal rate by checking incremental tax on +$100
+  const delta = 100;
+  const deltaCore = computeCoreTaxes({ ...params, grossProfit: grossProfit + delta });
+  const marginalRate = Math.min(100, Math.max(0, ((deltaCore.totalTax - core.totalTax) / delta) * 100));
+
+  return {
+    grossProfit,
+    netProfit,
+    ...core,
     effectiveRate,
     marginalRate,
     contractType,
