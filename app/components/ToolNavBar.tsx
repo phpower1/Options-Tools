@@ -29,8 +29,8 @@ export default function ToolNavBar() {
   const pathname = usePathname();
   const [toolList, setToolList] = useState<ToolItem[]>(DEFAULT_TOOLS);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
-  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [hasCustomOrder, setHasCustomOrder] = useState<boolean>(false);
+  const dragItemIndexRef = useRef<number | null>(null);
   const isDraggingRef = useRef(false);
 
   // Load saved order from localStorage on mount
@@ -63,7 +63,6 @@ export default function ToolNavBar() {
   }, []);
 
   const saveOrder = (newList: ToolItem[]) => {
-    setToolList(newList);
     setHasCustomOrder(true);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newList.map((t) => t.href)));
@@ -84,53 +83,44 @@ export default function ToolNavBar() {
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
     isDraggingRef.current = true;
+    dragItemIndexRef.current = index;
     setDraggedIndex(index);
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/plain", index.toString());
   };
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
+  // Reorganizes in real time as the mouse drags across other buttons
+  const handleDragOver = (e: React.DragEvent, targetIndex: number) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
-    if (dragOverIndex !== index) {
-      setDragOverIndex(index);
-    }
-  };
 
-  const handleDragLeave = (index: number) => {
-    if (dragOverIndex === index) {
-      setDragOverIndex(null);
-    }
-  };
+    const currentIndex = dragItemIndexRef.current;
+    if (currentIndex === null || currentIndex === targetIndex) return;
 
-  const handleDrop = (e: React.DragEvent, targetIndex: number) => {
-    e.preventDefault();
-    if (draggedIndex === null || draggedIndex === targetIndex) {
-      setDraggedIndex(null);
-      setDragOverIndex(null);
-      return;
-    }
+    setToolList((prevList) => {
+      const updated = [...prevList];
+      const [movedItem] = updated.splice(currentIndex, 1);
+      updated.splice(targetIndex, 0, movedItem);
+      saveOrder(updated);
+      return updated;
+    });
 
-    const updated = [...toolList];
-    const [movedItem] = updated.splice(draggedIndex, 1);
-    updated.splice(targetIndex, 0, movedItem);
-
-    saveOrder(updated);
-    setDraggedIndex(null);
-    setDragOverIndex(null);
+    dragItemIndexRef.current = targetIndex;
+    setDraggedIndex(targetIndex);
   };
 
   const handleDragEnd = () => {
     setDraggedIndex(null);
-    setDragOverIndex(null);
+    dragItemIndexRef.current = null;
     setTimeout(() => {
       isDraggingRef.current = false;
-    }, 50);
+    }, 100);
   };
 
   const handleClick = (e: React.MouseEvent) => {
     if (isDraggingRef.current) {
       e.preventDefault();
+      e.stopPropagation();
     }
   };
 
@@ -138,12 +128,11 @@ export default function ToolNavBar() {
     <div className="flex flex-col items-center w-full max-w-4xl mb-8">
       <nav
         aria-label="Options tools navigation"
-        className="flex flex-wrap justify-center gap-3 md:gap-4 py-2 w-full"
+        className="flex flex-wrap justify-center gap-3 md:gap-4 py-2 w-full select-none"
       >
         {toolList.map(({ label, href }, index) => {
           const isActive = pathname === href;
           const isBeingDragged = draggedIndex === index;
-          const isTargeted = dragOverIndex === index && draggedIndex !== index;
 
           return (
             <div
@@ -151,19 +140,22 @@ export default function ToolNavBar() {
               draggable
               onDragStart={(e) => handleDragStart(e, index)}
               onDragOver={(e) => handleDragOver(e, index)}
-              onDragLeave={() => handleDragLeave(index)}
-              onDrop={(e) => handleDrop(e, index)}
               onDragEnd={handleDragEnd}
-              className={`transition-all duration-200 cursor-grab active:cursor-grabbing select-none rounded-lg ${
-                isBeingDragged ? "opacity-30 scale-95" : ""
-              } ${isTargeted ? "ring-2 ring-teal-400 ring-offset-2 ring-offset-gray-900 scale-105" : ""}`}
+              className={`transition-all duration-300 ease-out cursor-grab active:cursor-grabbing rounded-lg ${
+                isBeingDragged
+                  ? "opacity-40 scale-95 ring-2 ring-teal-400 ring-dashed"
+                  : "hover:scale-[1.03]"
+              }`}
             >
               <Link
                 href={href}
                 onClick={handleClick}
-                className={`py-2 px-5 md:px-6 rounded-lg font-semibold inline-block transition-colors duration-200 transform ${
+                draggable={false}
+                className={`py-2 px-5 md:px-6 rounded-lg font-semibold inline-block transition-colors duration-200 ${
+                  draggedIndex !== null ? "pointer-events-none" : ""
+                } ${
                   isActive
-                    ? "bg-teal-500 text-white shadow-lg scale-105"
+                    ? "bg-teal-500 text-white shadow-lg"
                     : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white"
                 }`}
                 title="Click to open or drag to reorganize"
