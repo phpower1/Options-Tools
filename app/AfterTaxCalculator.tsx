@@ -234,9 +234,68 @@ export default function AfterTaxCalculator() {
       name: "Index Options (SPX 60/40)",
       "Gross Profit": Math.round(comparisonResults.section1256.grossProfit),
       "Total Taxes": Math.round(comparisonResults.section1256.totalTax),
-      "Net Take-Home": Math.round(comparisonResults.section1256.netProfit),
-    },
-  ];
+  // Custom Tooltip for Comparison Bar Chart
+  const CustomBarTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-gray-900/95 border border-gray-700 rounded-xl p-3.5 shadow-2xl backdrop-blur-md text-xs min-w-[210px]">
+          <div className="font-semibold text-gray-200 border-b border-gray-700/80 pb-1.5 mb-2.5">
+            {label}
+          </div>
+          <div className="space-y-2 font-mono">
+            {payload.map((item: any, idx: number) => {
+              const color = item.color || item.fill || "#14b8a6";
+              return (
+                <div key={idx} className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-2 text-gray-300 font-sans">
+                    <span
+                      className="w-2.5 h-2.5 rounded-sm shrink-0 inline-block"
+                      style={{ backgroundColor: color }}
+                    />
+                    <span>{item.name}:</span>
+                  </div>
+                  <span className="font-bold" style={{ color }}>
+                    {formatCurrency(item.value)}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Custom Tooltip for Donut / Pie Chart
+  const CustomPieTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const item = payload[0];
+      const color = item.payload?.color || item.color || "#14b8a6";
+      const percent =
+        currentResult.grossProfit > 0
+          ? ((item.value / currentResult.grossProfit) * 100).toFixed(1)
+          : "0.0";
+      return (
+        <div className="bg-gray-900/95 border border-gray-700 rounded-xl px-3 py-2 shadow-2xl backdrop-blur-md text-xs">
+          <div className="flex items-center gap-2">
+            <span
+              className="w-2.5 h-2.5 rounded-full shrink-0 inline-block"
+              style={{ backgroundColor: color }}
+            />
+            <span className="text-gray-300 font-sans font-medium">{item.name}:</span>
+            <span className="font-mono font-bold text-white">
+              {formatCurrency(item.value)}
+            </span>
+            <span className="text-gray-400 font-mono text-[11px]">
+              ({percent}%)
+            </span>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="bg-gray-800 rounded-xl shadow-2xl p-6 md:p-10 w-full max-w-4xl border border-gray-700">
