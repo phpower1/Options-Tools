@@ -234,6 +234,10 @@ export default function AfterTaxCalculator() {
       name: "Index Options (SPX 60/40)",
       "Gross Profit": Math.round(comparisonResults.section1256.grossProfit),
       "Total Taxes": Math.round(comparisonResults.section1256.totalTax),
+      "Net Take-Home": Math.round(comparisonResults.section1256.netProfit),
+    },
+  ];
+
   // Custom Tooltip for Comparison Bar Chart
   const CustomBarTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -715,10 +719,7 @@ export default function AfterTaxCalculator() {
                       <Cell key={`cell-${index}`} fill={entry.color} stroke="#1f2937" strokeWidth={2} />
                     ))}
                   </Pie>
-                  <Tooltip
-                    formatter={(val: number) => [formatCurrency(val), "Amount"]}
-                    contentStyle={{ backgroundColor: "#111827", borderColor: "#374151", borderRadius: "0.5rem" }}
-                  />
+                  <Tooltip content={<CustomPieTooltip />} />
                   <Legend
                     verticalAlign="bottom"
                     iconType="circle"
@@ -865,8 +866,8 @@ export default function AfterTaxCalculator() {
                   tick={{ fontSize: 11 }}
                 />
                 <Tooltip
-                  formatter={(val: number) => [formatCurrency(val), ""]}
-                  contentStyle={{ backgroundColor: "#111827", borderColor: "#374151", borderRadius: "0.5rem" }}
+                  content={<CustomBarTooltip />}
+                  cursor={false}
                 />
                 <Legend wrapperStyle={{ fontSize: "11px", paddingTop: "8px" }} />
                 <Bar dataKey="Gross Profit" fill="#14b8a6" radius={[4, 4, 0, 0]} />
