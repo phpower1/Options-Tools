@@ -88,7 +88,11 @@ export default function Page() {
       </section>
       <section className="w-full max-w-4xl mt-6 mb-4">
         <h2 className="text-lg font-bold text-gray-300 mb-4">Related Tools</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <Link href="/after-tax-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
+            <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">After-Tax Return Planner</p>
+            <p className="text-gray-500 text-xs mt-1">Determine required gross daily profit to hit your after-tax take-home goals.</p>
+          </Link>
           <Link href="/greeks-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
             <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">Greeks Calculator</p>
             <p className="text-gray-500 text-xs mt-1">Calculate contract-level Delta, Gamma, Theta, and Vega with Black-Scholes.</p>

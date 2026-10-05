@@ -13,6 +13,7 @@ const tools = [
   { label: "Daily Theta", href: "/daily-theta-calculator" },
   { label: "IV Calculator", href: "/implied-volatility" },
   { label: "Max Pain", href: "/max-pain-calculator" },
+  { label: "After-Tax Return", href: "/after-tax-calculator" },
 ];
 
 export default function ToolNavBar() {

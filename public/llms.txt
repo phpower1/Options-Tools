@@ -2,7 +2,7 @@
 
 > Free, browser-based options trading calculators. No login, no signup, no data sent to any server. All calculations run locally in your browser.
 
-TradeToolsHub provides nine financial calculators built for options traders. Each tool is free to use and works entirely client-side. Tools cover return analysis, risk metrics, options pricing, and market structure.
+TradeToolsHub provides ten financial calculators built for options traders. Each tool is free to use and works entirely client-side. Tools cover return analysis, risk metrics, options pricing, tax planning, and market structure.
 
 ## Tools
 
@@ -23,6 +23,8 @@ TradeToolsHub provides nine financial calculators built for options traders. Eac
 - [Max Pain Calculator](https://www.tradetoolshub.com/max-pain-calculator): Calculate the max pain strike — the price at which the greatest total dollar value of open options contracts would expire worthless at expiration. Based on open interest aggregation across all strikes. Demonstrates the max pain theory concept.
 
 - [Margin Calculator](https://www.tradetoolshub.com/margin-calculator): Calculate the impact of margin (leverage) on options and stock trades. Inputs: initial capital, margin loan, annual interest rate, duration (days), stock price change (%). Outputs: buying power, interest cost, net return with and without margin, leverage multiplier, and margin call threshold. Includes a visual chart.
+
+- [Options After-Tax Return Planner](https://www.tradetoolshub.com/after-tax-calculator): Calculate the required pre-tax gross profit to achieve your desired take-home income target. Supports dual planning modes (Goal vs Estimate), all 50 US states + DC, baseline income bracket stacking, Net Investment Income Tax (NIIT 3.8%), and side-by-side comparison with Section 1256 (SPX/NDX 60/40) tax advantages. Includes trading milestone targets (daily, monthly, annual).
 
 ## About
 

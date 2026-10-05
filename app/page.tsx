@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Free Options Trading Calculators | TradeToolsHub",
   description:
-    "Free options trading calculators: ROI, Breakeven, Greeks (Delta/Gamma/Theta/Vega), Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, Margin, and Daily Theta. Built for options traders.",
+    "Free options trading calculators: After-Tax Return, ROI, Breakeven, Greeks, Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, Margin, and Daily Theta. Built for options traders.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Free Options Trading Calculators | TradeToolsHub",
     description:
-      "Free options trading calculators: ROI, Breakeven, Greeks, IV, Sharpe, Sortino, Max Pain, Margin, Daily Theta.",
+      "Free options trading calculators: After-Tax Return, ROI, Breakeven, Greeks, IV, Sharpe, Sortino, Max Pain, Margin, Daily Theta.",
     url: "https://www.tradetoolshub.com/",
   },
 };
@@ -69,6 +69,12 @@ const tools = [
     description:
       "Estimate initial and maintenance margin requirements for selling options contracts. Understand your buying power consumption before entering a position.",
   },
+  {
+    href: "/after-tax-calculator",
+    title: "After-Tax Return Planner",
+    description:
+      "Calculate the required pre-tax gross profits to achieve your take-home income targets across all 50 US states. Compare Equity Options vs. Section 1256 Index Options (SPX).",
+  },
 ];
 
 const jsonLd = {
@@ -77,7 +83,7 @@ const jsonLd = {
   name: "TradeToolsHub",
   url: "https://www.tradetoolshub.com/",
   description:
-    "Free options trading calculators for ROI, Breakeven, Greeks, Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, Margin, and Daily Theta.",
+    "Free options trading calculators for After-Tax Return, ROI, Breakeven, Greeks, Implied Volatility, Sharpe Ratio, Sortino Ratio, Max Pain, Margin, and Daily Theta.",
   hasPart: tools.map((tool) => ({
     "@type": "WebPage",
     name: tool.title,

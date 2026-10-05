@@ -84,7 +84,11 @@ export default function Page() {
       </section>
       <section className="w-full max-w-4xl mt-6 mb-4">
         <h2 className="text-lg font-bold text-gray-300 mb-4">Related Tools</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <Link href="/after-tax-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
+            <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">After-Tax Return Planner</p>
+            <p className="text-gray-500 text-xs mt-1">Calculate how much gross return you need to meet net take-home targets.</p>
+          </Link>
           <Link href="/breakeven-calculator" className="group bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-teal-500 transition-colors">
             <p className="font-semibold text-teal-400 group-hover:text-teal-300 text-sm">Breakeven Calculator</p>
             <p className="text-gray-500 text-xs mt-1">Find the price your trade needs to reach to break even.</p>
