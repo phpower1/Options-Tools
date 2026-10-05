@@ -878,6 +878,76 @@ export default function AfterTaxCalculator() {
           </div>
         </div>
       </div>
+
+      {/* SEO & Educational Content */}
+      <div className="text-gray-400 text-sm mt-10 space-y-4 border-t border-gray-700/80 pt-8">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-200">
+          What is the Options After-Tax Return Planner?
+        </h2>
+        <p>
+          The <strong>Options After-Tax Return Planner</strong> is designed to help options traders bridge the gap between gross trading gains and real-world take-home income. While most trading calculators focus solely on pre-tax returns, taxes represent the single largest friction for retail options traders. Short-term capital gains from equity options are taxed at ordinary income rates (up to 37% federal plus state taxes), which can consume 30% to 50%+ of your gross profits.
+        </p>
+        <p>
+          This tool solves the reverse financial planning question: <em>&ldquo;If I want to pocket $50,000 net after taxes this year, how much gross profit do I actually need to generate in the market?&rdquo;</em> It models federal tax brackets, all 50 US states, local surtaxes (such as NYC resident tax), and the 3.8% Net Investment Income Tax (NIIT).
+        </p>
+
+        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How It Works</h3>
+        <p>
+          Unlike simple flat-rate estimates, this calculator accounts for real-world tax mechanics:
+        </p>
+        <ul className="list-disc list-inside space-y-2 pl-2">
+          <li>
+            <strong>Income Bracket Stacking</strong>: Trading profits sit on top of your baseline annual income (such as W-2 wages or business profits). Entering your baseline income ensures your profits are taxed at your true <strong>marginal tax bracket</strong> rather than artificially starting at the 0% or 10% bottom tiers.
+          </li>
+          <li>
+            <strong>Section 1256 Index Options (60/40 Rule)</strong>: Broad-based index options (SPX, NDX, RUT, XSP) qualify for Section 1256 treatment, where <strong>60% of gains are taxed at lower long-term capital gains rates</strong> (max 20%) and only <strong>40% at short-term rates</strong> (max 37%), regardless of how long you hold the contracts.
+          </li>
+          <li>
+            <strong>All 50 US States &amp; DC</strong>: Accurately calculates state tax drag whether you reside in a 0% tax state (e.g., Texas, Florida, Nevada, Washington), a flat-tax state (e.g., Pennsylvania, Illinois, North Carolina), or a graduated progressive state (e.g., California up to 13.3%, New York, New Jersey).
+          </li>
+          <li>
+            <strong>Net Investment Income Tax (NIIT)</strong>: Automatically factors in the federal 3.8% surtax on investment income for high earners exceeding statutory MAGI thresholds ($200,000 for Single filers, $250,000 for Married Filing Jointly).
+          </li>
+          <li>
+            <strong>Mathematical Inverse Solver</strong>: Uses a high-precision binary search algorithm to solve for the exact required pre-tax gross profit down to $0.01.
+          </li>
+        </ul>
+
+        <h3 className="text-lg md:text-xl font-semibold text-gray-300">
+          Section 1256 Index Options vs. Standard Equity Options
+        </h3>
+        <p>
+          One of the highest-leverage decisions an options trader can make is selecting between single-stock/ETF options (e.g., AAPL, TSLA, SPY, QQQ) and broad-based index options (e.g., SPX, NDX, XSP). Standard equity options are taxed as 100% short-term capital gains (ordinary income). By contrast, Section 1256 index contracts reduce your top federal capital gains rate from 37% down to roughly 26.8%—saving thousands of dollars in tax drag on identical market gains without any additional market risk.
+        </p>
+
+        <h3 className="text-lg md:text-xl font-semibold text-gray-300">How to Use the Tool</h3>
+        <ol className="list-decimal list-inside space-y-2">
+          <li>
+            Choose your planning mode: <strong>Target Net Goal → Required Gross</strong> (to plan your required trading profit) or <strong>Gross Profit → Net Take-Home</strong> (to estimate tax liability on existing gains).
+          </li>
+          <li>
+            Enter your <strong>Target Dollar Amount</strong> or select one of the quick preset chips ($10k, $25k, $50k, $100k, $250k).
+          </li>
+          <li>
+            Select your <strong>State of Residence</strong> from the dropdown. States with 0% state income tax, flat rates, or tiered brackets are automatically identified.
+          </li>
+          <li>
+            Choose your <strong>Tax Filing Status</strong> (Single, Married Filing Jointly, or Head of Household) and enter your estimated <strong>Other Baseline Income</strong> to model bracket placement.
+          </li>
+          <li>
+            Toggle between <strong>Equity Options</strong> (100% short-term) and <strong>Section 1256 Index Options</strong> (60/40 rule) to compare your tax obligations.
+          </li>
+          <li>
+            (Optional) Enter your <strong>Account Net Liquidity</strong> to see the required annual pre-tax return percentage on your trading capital.
+          </li>
+          <li>
+            Review the <strong>Trading Milestone Targets</strong> to see your daily profit target (based on 252 trading days) to engineer your daily theta decay target.
+          </li>
+          <li>
+            Your inputs are automatically saved locally in your browser so your planning numbers persist on your next visit.
+          </li>
+        </ol>
+      </div>
     </div>
   );
 }
